@@ -10,6 +10,7 @@
     font-weight: bolder;
     opacity: 100%;
     cursor: pointer;
+    box-sizing: border-box;
 }
 .button:hover{
     background: linear-gradient(rgb(75, 153, 75) , rgb(124, 166, 201)) ;

@@ -1,0 +1,19 @@
+.alert{
+    width : 100%;
+    padding : 0.5rem;
+    border-radius: 20px;
+    text-align: center;
+    margin: 2rem 0;
+    overflow-wrap: break-word;
+    box-sizing: border-box;
+}
+.alert.success{
+    background: rgb(190, 231, 190);
+    color : rgb(97, 197, 97);
+    border: 1px solid rgb(97, 197, 97);
+}
+.alert.error{
+    background: rgb(235, 194, 194);
+    color : rgb(209, 80, 80);
+    border: 1px solid rgb(209, 80, 80);
+}

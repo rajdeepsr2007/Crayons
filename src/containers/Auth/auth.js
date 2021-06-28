@@ -1,9 +1,11 @@
-import React , {Fragment, useReducer} from 'react';
+import React , {Fragment, useReducer, useState} from 'react';
 import initialState from './initialControlsState';
 import CustomInputs from '../../components/Inputs/custom-inputs';
 import Card from '../../components/UI/Card/card';
 import Logo from '../../components/Logo/logo';
 import Button from '../../components/Inputs/Button/button';
+import Avatar from '../../components/Avatar/avatar';
+import Alert from '../../components/Feedback/Alert/alert';
 
 const reducer = (state,action) => {
     switch(action.type){
@@ -28,6 +30,8 @@ const Auth = (props) => {
         initialState
     )
 
+    const [loading] = useState(true)
+
     const onChange = (control , event) => {
         dispatchControls({
             type : 'Change',
@@ -47,13 +51,23 @@ const Auth = (props) => {
         </Button>
     )
 
+    const alert = (
+        <Alert type="success" >
+            New account can be created by using an unused username
+        </Alert>
+    )
+
     const authCard = (
-       <Card>
+       <Card style={{ width : '20rem' }} >
            <Logo />
            {Inputs}
+           {alert}
+           <Avatar />
            {joinButton}
        </Card>
     )
+
+
 
     return(
         <Fragment>

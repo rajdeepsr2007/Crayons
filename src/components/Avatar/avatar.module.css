@@ -1,0 +1,23 @@
+.avatar{
+    text-align: center;
+    height: auto;
+    width: auto;
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.avatar .face{
+    width : 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    border: 1px solid rgb(106, 199, 106);
+}
+.avatar .body{
+    width : 3rem;
+    height: 2rem;
+    border: 1px solid rgb(106, 199, 106);
+    border-radius: 15px 15px 0 0;
+}
