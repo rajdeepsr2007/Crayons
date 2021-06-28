@@ -2,6 +2,8 @@ import React , {Fragment, useReducer} from 'react';
 import initialState from './initialControlsState';
 import CustomInputs from '../../components/Inputs/custom-inputs';
 import Card from '../../components/UI/Card/card';
+import Logo from '../../components/Logo/logo';
+import Button from '../../components/Inputs/Button/button';
 
 const reducer = (state,action) => {
     switch(action.type){
@@ -34,16 +36,22 @@ const Auth = (props) => {
         })
     }
 
-    console.log(controls);
-
     const Inputs = <CustomInputs
                     controls={controls}
                     onChange={onChange}
                     />
 
+    const joinButton = (
+        <Button>
+            Join
+        </Button>
+    )
+
     const authCard = (
        <Card>
+           <Logo />
            {Inputs}
+           {joinButton}
        </Card>
     )
 

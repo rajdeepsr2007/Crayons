@@ -1,0 +1,16 @@
+.button{
+    border: 1px solid green;
+    width: 100%;
+    margin: 2rem 0;
+    text-align: center;
+    padding: 0.5rem 0;
+    border-radius: 20px;
+    background:linear-gradient(yellow , orange);
+    color: white;
+    font-weight: bolder;
+    opacity: 100%;
+    cursor: pointer;
+}
+.button:hover{
+    background: linear-gradient(rgb(75, 153, 75) , rgb(124, 166, 201)) ;
+}
