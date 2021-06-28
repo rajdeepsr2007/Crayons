@@ -14,7 +14,7 @@ const Layout = (props) => {
         className={classes.main}
         style={layoutStyle}
         >
-            <Auth />
+            {props.children}
         </main>
     )
 }

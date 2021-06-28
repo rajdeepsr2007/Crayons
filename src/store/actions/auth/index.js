@@ -7,10 +7,11 @@ const authUserStart = () => {
     }
 }
 
-const authUserSuccess = (userId) => {
+const authUserSuccess = (userId , success) => {
     return{
         type : actionTypes.AUTH_USER_SUCCESS,
-        userId
+        userId,
+        success
     }
 }
 
