@@ -1,0 +1,13 @@
+.card{
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    align-items: center;
+    background: white;
+    padding: 2rem;
+    box-shadow: 0px 0px 10px 2px rgb(116, 187, 116);
+    border-radius: 20px;
+    opacity: 80%;
+}

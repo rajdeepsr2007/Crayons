@@ -1,0 +1,17 @@
+.input{
+    display: block;
+    padding: 0.8rem;
+    border-radius: 20px;
+    margin: 1rem 0;
+    width: 15rem;
+    box-sizing: border-box;
+    color: rgb(86, 180, 114);
+    border: 0px solid white;
+    outline: 1px solid rgb(117, 189, 139);
+    font-weight: bolder;
+    font-size: 1.05rem;
+}
+.input:focus{
+    border: 3px solid rgb(89, 196, 125);
+    outline: 0;
+}
