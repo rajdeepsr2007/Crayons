@@ -1,4 +1,4 @@
-import React , {Fragment, useEffect, useReducer} from 'react';
+import React , {Fragment, useEffect, useReducer, useState} from 'react';
 import initialState from './initialControlsState';
 import CustomInputs from '../../components/Inputs/custom-inputs';
 import Card from '../../components/UI/Card/card';
@@ -9,29 +9,15 @@ import Alert from '../../components/Feedback/Alert/alert';
 import {connect} from 'react-redux';
 import * as actions from '../../store/actions/';
 import Loader from '../../components/UI/Loader/loader';
-
-const reducer = (state,action) => {
-    switch(action.type){
-
-        case 'Change' : 
-        const updatedControls = {};
-        for( const control in state ){
-            updatedControls[control] = {...state[control]}
-        }
-        updatedControls[action.control].value = action.event.target.value;
-        return updatedControls;
-
-        default : 
-            return state
-    }
-}
+import controlsReducer from './controlsReducer';
 
 const Auth = (props) => {
 
     const [controls , dispatchControls] = useReducer(
-        reducer ,
+        controlsReducer ,
         initialState
     )
+    const [showErrors , setShowErrors] = useState(false);
 
     useEffect( () => {
         if( props.success ){
@@ -39,10 +25,11 @@ const Auth = (props) => {
                 props.history.replace('/menu')
             },5000)
         }
-    } , [props.success] )
+    } , [props.success , props.history] )
 
 
     const onChange = (control , event) => {
+        setShowErrors(false);
         dispatchControls({
             type : 'Change',
             control : control ,
@@ -53,15 +40,26 @@ const Auth = (props) => {
     const Inputs = <CustomInputs
                     controls={controls}
                     onChange={onChange}
+                    showErrors={showErrors}
                     />
+
+    const authUser = () => {
+        for( const control in controls ){
+            if( controls[control].error ){
+                setShowErrors(true);
+                return;
+            }
+        }
+        props.onAuthUser(
+            controls.username.value,
+            controls.password.value
+        )
+    }
 
     const joinButton = (
         <Button 
             onClick={
-                !props.loading ? () => props.onAuthUser(
-                                    controls.username.value,
-                                    controls.password.value
-                                ) : () => {}
+                !props.loading ? authUser : () => {}
             } 
         >
             {props.loading ? <Loader /> : 'Join'}
