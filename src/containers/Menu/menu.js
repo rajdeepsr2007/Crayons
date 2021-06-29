@@ -21,7 +21,7 @@ const Menu = (props) => {
     }
 
     const navigate = (url) => {
-        props.history.replace(
+        props.history.push(
             url
         )
     }

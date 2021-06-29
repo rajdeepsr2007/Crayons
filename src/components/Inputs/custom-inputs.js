@@ -6,23 +6,61 @@ const CustomInputs = (props) => {
 
     const inputs = [];
     for( const control in props.controls ){
-        inputs.push(
-            <Fragment key={control} >
-                <input
-                type={props.controls[control].type}
-                value={props.controls[control].value}
-                placeholder={props.controls[control].placeholder}
-                onChange={(event) => props.onChange(control,event)}
-                className={classes.input}
-                />
-                {
-                    props.showErrors ? 
-                    <Alert type="error">
-                        {props.controls[control].error}
-                    </Alert> : null
-                } 
-            </Fragment>  
-        )
+
+        if( props.controls[control].type === 'text' 
+            || props.controls[control].type === 'number'
+            || props.controls[control].type === 'password'
+            ){
+            inputs.push(
+                <Fragment key={control} >
+                    {
+                        props.controls[control].label ?
+                        <h3>
+                            {
+                                props.controls[control].label
+                            }
+                        </h3>
+                        : null
+                    }
+                    <input
+                    type={props.controls[control].type}
+                    value={props.controls[control].value}
+                    placeholder={props.controls[control].placeholder}
+                    onChange={(event) => props.onChange(control,event)}
+                    className={classes.input}
+                    max={props.controls[control].max}
+                    min={props.controls[control].min}
+                    />
+                    {
+                        props.showErrors ? 
+                        <Alert type="error">
+                            {props.controls[control].error}
+                        </Alert> : null
+                    } 
+                </Fragment>  
+            )
+        }else{
+            inputs.push(
+                <Fragment key={control} >
+                    <textarea
+                    type={props.controls[control].type}
+                    value={props.controls[control].value.join(' ')}
+                    placeholder={props.controls[control].placeholder}
+                    onChange={(event) => props.onChange(control,event)}
+                    rows='5'
+                    cols='10'
+                    className={classes.input}
+                    />
+                    {
+                        props.showErrors ? 
+                        <Alert type="error">
+                            {props.controls[control].error}
+                        </Alert> : null
+                    } 
+                </Fragment>  
+            )
+        }
+        
     }
 
     return(

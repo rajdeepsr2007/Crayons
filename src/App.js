@@ -3,7 +3,7 @@ import Auth from "./containers/Auth/auth";
 import Layout from "./hoc/Layout/layout";
 import {BrowserRouter, Switch , Route , Redirect} from 'react-router-dom';
 import Menu from "./containers/Menu/menu";
-import CreateRoom from "./containers/Create Room/create-room";
+import CreateRoom from "./containers/Room/Create/create-room";
 
 function App() {
   return (
