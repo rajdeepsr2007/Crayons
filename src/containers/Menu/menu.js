@@ -20,6 +20,12 @@ const Menu = (props) => {
          })
     }
 
+    const navigate = (url) => {
+        props.history.replace(
+            url
+        )
+    }
+
     const buttonStyle = {
         padding : '1rem',
         margin : '1rem 0'
@@ -34,7 +40,9 @@ const Menu = (props) => {
         </Button>
     )
     const createRoomButton = (
-        <Button style={{
+        <Button 
+        onClick={() => navigate('/create-room')}
+        style={{
             ...buttonStyle,
             background : 'orange'
         }}>

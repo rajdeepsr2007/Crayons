@@ -59,7 +59,7 @@ const Auth = (props) => {
     const joinButton = (
         <Button 
             onClick={
-                !props.loading ? authUser : () => {}
+                !props.loading ? () => authUser() : () => {}
             } 
         >
             {props.loading ? <Loader /> : 'Join'}
