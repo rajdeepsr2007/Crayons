@@ -7,9 +7,8 @@ const CustomInputs = (props) => {
     const inputs = [];
     for( const control in props.controls ){
         inputs.push(
-            <Fragment>
+            <Fragment key={control} >
                 <input
-                key={control}
                 type={props.controls[control].type}
                 value={props.controls[control].value}
                 placeholder={props.controls[control].placeholder}
