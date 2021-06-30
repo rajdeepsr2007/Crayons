@@ -30,6 +30,7 @@ const CustomInputs = (props) => {
                     className={classes.input}
                     max={props.controls[control].max}
                     min={props.controls[control].min}
+                    step={props.controls[control].step}
                     />
                     {
                         props.showErrors ? 
@@ -47,7 +48,7 @@ const CustomInputs = (props) => {
                     value={props.controls[control].value.join(' ')}
                     placeholder={props.controls[control].placeholder}
                     onChange={(event) => props.onChange(control,event)}
-                    rows='5'
+                    rows='3'
                     cols='10'
                     className={classes.input}
                     />

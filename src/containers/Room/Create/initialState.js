@@ -8,6 +8,15 @@ const initialState = {
             max : 10,
             min : 1
         } ,
+        drawingTime : {
+            label : 'Drawing Time',
+            type : 'number',
+            value : 60 ,
+            placeholder : 'Drawing Time',
+            max : 180 ,
+            min : 60 ,
+            step : 20
+        },
         words : {
             type : 'textarea',
             value : [],

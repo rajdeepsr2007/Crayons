@@ -8,11 +8,13 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 
 import authReducer from './store/reducers/auth/index';
+import roomReducer from './store/reducers/room/index';
 
 import reportWebVitals from './reportWebVitals';
 
 const rootReducer = combineReducers({
-  auth : authReducer
+  auth : authReducer,
+  room : roomReducer
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

@@ -6,6 +6,9 @@ import controlsReducer from './controlsReducer';
 import CustomInputs from '../../../components/Inputs/custom-inputs';
 import Alert from '../../../components/Feedback/Alert/alert';
 import Button from '../../../components/Inputs/Button/button';
+import {connect} from 'react-redux';
+import * as actions from '../../../store/actions/';
+import Loader from '../../../components/UI/Loader/loader';
 
 const CreateRoom = (props) => { 
     
@@ -14,11 +17,30 @@ const CreateRoom = (props) => {
         initialState
     )
 
+    const onCreateRoom = () => {
+        props.onCreateRoom(
+            controls.controls.rounds.value ,
+            controls.controls.drawingTime.value, 
+            controls.controls.words.value,
+            props.user
+        )
+    }
+
     const alert = (
         <Alert type='success' >
             Create Custom Room
         </Alert>
     )
+
+    const error = (
+        props.error ?
+        <Alert type='error'>
+            {props.error}
+        </Alert>
+        : null
+    )
+
+    
 
     const onChange = (control,event) => {
         if( control === 'rounds' ){
@@ -26,9 +48,14 @@ const CreateRoom = (props) => {
                 type : 'Rounds',
                 event
             })
-        }else{
+        }else if(control === 'words'){
             dispatchControls({
                 type : 'Words',
+                event
+            })
+        }else{
+            dispatchControls({
+                type : 'drawingTime',
                 event
             })
         }
@@ -42,20 +69,31 @@ const CreateRoom = (props) => {
     )
 
     const createRoomButton = (
-        <Button>
-            Create Room
+        <Button
+        onClick={
+            props.loading ?
+            () => {}
+            : onCreateRoom
+        }
+        >
+           {
+               props.loading ?
+               <Loader />
+               : 'Create Room'
+           }
         </Button>
     )
 
     const createRoomCard = (
         <Card style={{
             width : '25%',
-            height : '36rem',
+            height : 'auto',
             minWidth : '20rem'
         }} >
             <Logo />
             {alert}
             {Inputs}
+            {error}
             {createRoomButton}
         </Card>
     )
@@ -65,4 +103,19 @@ const CreateRoom = (props) => {
     )
 }
 
-export default CreateRoom;
+const mapStateToProps = state => {
+    return{
+        loading : state.room.creating ,
+        error : state.room.error ,
+        roomId : state.room.createdRoomId ,
+        user : state.auth.user
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return{
+        onCreateRoom : (rounds , drawingTime , words , user ) => dispatch(actions.createRoom(rounds , drawingTime , words , user))
+    }
+}
+
+export default connect(mapStateToProps , mapDispatchToProps)(CreateRoom);
