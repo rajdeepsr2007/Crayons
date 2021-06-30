@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import Card from '../../../components/UI/Card/card';
 import Logo from '../../../components/Logo/logo';
 import initialState from './initialState';
@@ -16,6 +16,18 @@ const CreateRoom = (props) => {
         controlsReducer,
         initialState
     )
+
+    const {roomId , history , reset} = props;
+
+    useEffect( () => {
+        if( roomId ){
+            history.replace(`/play/${roomId}`)
+        }
+    } , [roomId , history] )
+
+    useEffect( () => {
+        reset();
+    } , [reset])
 
     const onCreateRoom = () => {
         props.onCreateRoom(
@@ -114,7 +126,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return{
-        onCreateRoom : (rounds , drawingTime , words , user ) => dispatch(actions.createRoom(rounds , drawingTime , words , user))
+        onCreateRoom : (rounds , drawingTime , words , user ) => dispatch(actions.createRoom(rounds , drawingTime , words , user)),
+        reset : () => dispatch(actions.resetRoomId())
     }
 }
 

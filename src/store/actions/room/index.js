@@ -37,3 +37,55 @@ export const createRoom = (rounds , drawingTime , words , user) => {
         } )
     }
 }
+
+
+
+const findRoomsStart = () => {
+    return{
+        type : actionTypes.FIND_ROOMS_START
+    }
+}
+
+const findRoomsSuccess = (rooms) => {
+    return{
+        type : actionTypes.FIND_ROOMS_SUCCESS,
+        rooms
+    }
+}
+
+const findRoomsFailed = (error) => {
+    return{
+        type : actionTypes.FIND_ROOMS_FAILED ,
+        error
+    }
+}
+
+export const findRooms = () => {
+    return dispatch => {
+        dispatch(findRoomsStart());
+        axiosInstance.get('/api/room/find')
+        .then(response => {
+            if( response ){
+                console.log(response.data.rooms);
+                dispatch(findRoomsSuccess(
+                    response.data.rooms
+                ))
+            }else{
+                dispatch(findRoomsFailed(
+                    'Network Error'
+                ))
+            }
+        })
+        .catch(error => {
+            dispatch(findRoomsFailed(
+                error.message
+            ))
+        })
+    }
+}
+
+export const resetRoomId = () => {
+    return{
+        type : actionTypes.RESET_ROOMID
+    }
+}

@@ -32,7 +32,11 @@ const Menu = (props) => {
     }
 
     const playButton = (
-        <Button style={{
+        <Button 
+        onClick={
+            () => navigate('/find-rooms')
+        }
+        style={{
             ...buttonStyle,
             background : 'yellow',
         }}>
@@ -49,7 +53,6 @@ const Menu = (props) => {
             Create Custom Room
         </Button>
     )
-    console.log(controls);
     const joinRoomButton = (
         <Fragment>
             <Button style={{

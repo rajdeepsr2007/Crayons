@@ -4,12 +4,15 @@ import Layout from "./hoc/Layout/layout";
 import {BrowserRouter, Switch , Route , Redirect} from 'react-router-dom';
 import Menu from "./containers/Menu/menu";
 import CreateRoom from "./containers/Room/Create/create-room";
+import FindRooms from "./containers/Room/Find/find-rooms";
 
 function App() {
   return (
     <BrowserRouter>
         <Layout>
           <Switch>
+            <Route path='/find-rooms' component={FindRooms} />
+            <Route path='/play' component={Menu} />
             <Route path='/auth' component={Auth} />
             <Route path='/menu' component={Menu} />
             <Route path='/create-room' component={CreateRoom} />

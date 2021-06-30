@@ -3,5 +3,7 @@ export{
 } from './auth/';
 
 export{
-    createRoom
+    createRoom,
+    resetRoomId,
+    findRooms
 } from './room/';

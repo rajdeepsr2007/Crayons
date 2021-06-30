@@ -1,6 +1,8 @@
 .card{
     width: auto;
     height: auto;
+    min-height: 20rem;
+    min-width: 15rem;
     display: flex;
     flex-flow: column;
     justify-content: flex-start;
@@ -10,4 +12,7 @@
     box-shadow: 0px 0px 10px 2px rgb(116, 187, 116);
     border-radius: 20px;
     opacity: 80%;
+}
+.card h3{
+    text-align: center;
 }
