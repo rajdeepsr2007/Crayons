@@ -53,12 +53,24 @@ const Menu = (props) => {
             Create Custom Room
         </Button>
     )
+
+    const onJoinRoomHandler = () => {
+        const roomId = controls.controls.join.value;
+        if( roomId === '' ){
+            return;
+        }else{
+            props.history.push(`/play/${roomId}`)
+        }
+    }
+
     const joinRoomButton = (
         <Fragment>
             <Button style={{
             ...buttonStyle,
             background : 'green'
-            }}>
+            }}
+            onClick={onJoinRoomHandler}
+            >
                 Join Room
             </Button>
             <CustomInputs

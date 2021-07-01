@@ -10,8 +10,8 @@ let socket = null;
 
 const FindRooms = (props) => {
 
-    const {rooms , onFindRooms} = props;
-    const [endpoint] = useState('http://localhost:9000')
+    const {rooms , onFindRooms , user , onUpdateRoom} = props;
+    const [endpoint] = useState('http://localhost:9000');
 
     useEffect(() => {
         if( rooms.length === 0 ){
@@ -28,10 +28,14 @@ const FindRooms = (props) => {
                 const roomIds = rooms.map(room => {
                     return room.roomId
                 })
-                socket.emit('join-rooms',{ roomIds , type : 'basic' });
+                socket.emit('join-rooms',{ roomIds , type : 'basic' , user});
+            })
+            socket.on('room_update', data => {
+                console.log(data);
+                onUpdateRoom(data);
             })
         }
-    },[rooms,endpoint])
+    },[rooms,endpoint,onUpdateRoom,user])
 
     const backButton = (
         <Button 
@@ -66,12 +70,14 @@ const mapStateToProps = state => {
         loading : state.room.creating ,
         error : state.room.error, 
         rooms : state.room.rooms,
+        user : state.auth.user
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return{
-        onFindRooms : () => dispatch(actions.findRooms())
+        onFindRooms : () => dispatch(actions.findRooms()),
+        onUpdateRoom : (data) => dispatch(actions.updateRoom(data))
     }
 }
 

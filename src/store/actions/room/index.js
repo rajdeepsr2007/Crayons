@@ -66,7 +66,6 @@ export const findRooms = () => {
         axiosInstance.get('/api/room/find')
         .then(response => {
             if( response ){
-                console.log(response.data.rooms);
                 dispatch(findRoomsSuccess(
                     response.data.rooms
                 ))
@@ -81,6 +80,13 @@ export const findRooms = () => {
                 error.message
             ))
         })
+    }
+}
+
+export const updateRoom = (data) => {
+    return{
+        type : actionTypes.UPDATE_ROOM,
+        data
     }
 }
 

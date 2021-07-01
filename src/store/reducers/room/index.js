@@ -30,6 +30,22 @@ const reducer = (state=initialState , action) => {
         case actionTypes.FIND_ROOMS_FAILED : 
             return {...state , creating : false , error : action.error}
 
+        case actionTypes.UPDATE_ROOM :
+            let updatedRooms = [];
+            for( const room of state.rooms ){
+                if( room.roomId === action.data.roomId ){
+                    updatedRooms.push(
+                        {...room , ...action.data.room}
+                    )
+                }else{
+                    updatedRooms.push({...room})
+                }
+            }
+            return{
+                ...state,
+                rooms : updatedRooms
+            }
+
         default : 
             return state;
     }

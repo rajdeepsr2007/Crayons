@@ -26,7 +26,7 @@ const Rooms = (props) => {
             {
                 rooms.map((room , index) => {
                     return <Room 
-                            key={index} 
+                            key={room.roomId} 
                             room={room} 
                             label={index+1} 
                             onClick={() => onJoinRoom(room.roomId)}
