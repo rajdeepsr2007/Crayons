@@ -1,0 +1,17 @@
+.room_status{
+    width : 6rem;
+    padding : 0.5rem;
+    color : white;
+    font-weight: bold;
+    border-radius: 20px;
+    text-align: center;
+}
+.not_started{
+    background-color: rgb(47, 146, 185);
+}
+.waiting{
+    background-color: orange;
+}
+.started{
+    background-color: green;
+}

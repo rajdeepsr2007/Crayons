@@ -1,0 +1,32 @@
+.rooms{
+    width : auto;
+    height: auto;
+    min-height : 20rem;
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    padding : 2rem 0 0 0;
+}
+.rooms span{
+    width : 5rem;
+    color : rgb(63, 115, 139);
+}
+.rooms .titles{
+    width: 100%;
+    display: flex;
+    padding: 1rem 0 1rem 9rem;
+    justify-content: flex-start;
+    align-items: center;
+    background: rgb(225, 238, 225);
+    margin: 1rem 0;
+    border-radius: 20px;
+    border: 1px solid green;
+    box-sizing: border-box;
+}
+.rooms .titles span{
+    width : 5rem;
+    font-weight: bold;
+    font-size: 0.9rem;
+    color :rgb(86, 180, 114);
+    margin-right: 2rem;
+}

@@ -1,16 +1,37 @@
-import React , {useEffect} from 'react';
+import React , {useEffect, useState} from 'react';
 import Card from '../../../components/UI/Card/card';
 import Button from '../../../components/Inputs/Button/button';
 import * as actions from '../../../store/actions/';
 import {connect} from 'react-redux';
+import Rooms from '../../../components/Rooms/rooms';
+import socketIOClient from 'socket.io-client';
+
+let socket = null;
 
 const FindRooms = (props) => {
 
+    const {rooms , onFindRooms} = props;
+    const [endpoint] = useState('http://localhost:9000')
+
     useEffect(() => {
-        if( props.rooms.length === 0 ){
-            props.onFindRooms()
+        if( rooms.length === 0 ){
+            onFindRooms()
         }
-    } , [])
+    } , [rooms , onFindRooms])
+
+    useEffect(() => {
+        if( !socket && rooms.length > 0 ){
+            socket = socketIOClient(
+                endpoint
+            )
+            socket.on('connected' , () => {
+                const roomIds = rooms.map(room => {
+                    return room.roomId
+                })
+                socket.emit('join-rooms',{ roomIds , type : 'basic' });
+            })
+        }
+    },[rooms,endpoint])
 
     const backButton = (
         <Button 
@@ -19,7 +40,7 @@ const FindRooms = (props) => {
         }
         style={{
             transform : 'scale(0.9)',
-            margin : '0 0 1rem 0'
+            margin : '1rem 0 1rem 0'
         }}>
             {'< Back'}
         </Button>
@@ -30,6 +51,7 @@ const FindRooms = (props) => {
             justifyContent : 'space-between'
         }}>
             <h3>Rooms</h3>
+            <Rooms rooms={props.rooms} />
             {backButton}
         </Card>
     )
