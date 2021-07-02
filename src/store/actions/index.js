@@ -9,3 +9,7 @@ export{
     findRooms,
     updateRoom
 } from './room/';
+
+export{
+    loadRoom
+} from './room/waiting/'

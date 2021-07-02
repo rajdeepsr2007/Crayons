@@ -24,7 +24,7 @@ const loadRoomFailed = (error) => {
 export const loadRoom = (roomId) => {
     return dispatch => {
         dispatch(loadRoomStart());
-        axiosInstance.get(`/room/${roomId}`)
+        axiosInstance.get(`/api/room/${roomId}`)
         .then(response => {
             if( response ){
                 if(response.data.success)
