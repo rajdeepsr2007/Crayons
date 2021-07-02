@@ -59,7 +59,7 @@ const Menu = (props) => {
         if( roomId === '' ){
             return;
         }else{
-            props.history.push(`/play/${roomId}`)
+            props.history.push(`/waiting/${roomId}`)
         }
     }
 

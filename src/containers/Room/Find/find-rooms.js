@@ -6,12 +6,14 @@ import {connect} from 'react-redux';
 import Rooms from '../../../components/Rooms/rooms';
 import socketIOClient from 'socket.io-client';
 
-let socket = null;
 
 const FindRooms = (props) => {
 
     const {rooms , onFindRooms , user , onUpdateRoom} = props;
     const [endpoint] = useState('http://localhost:9000');
+    const [socket,setSocket] = useState(null);
+    const [reload,setReload] = useState(false);
+
 
     useEffect(() => {
         if( rooms.length === 0 ){
@@ -19,20 +21,22 @@ const FindRooms = (props) => {
         }
     } , [rooms , onFindRooms])
 
+    console.log(socket);
+
+    useEffect(() => {
+        
+    },[])
+
     useEffect(() => {
         if( !socket && rooms.length > 0 ){
-            socket = socketIOClient(
+            const socket = socketIOClient(
                 endpoint
             )
-            socket.on('connected' , () => {
-                const roomIds = rooms.map(room => {
-                    return room.roomId
-                })
-                socket.emit('join-rooms',{ roomIds , type : 'basic' , user});
-            })
-            socket.on('room_update', data => {
-                console.log(data);
-                onUpdateRoom(data);
+            socket.on('connected', () => {
+                setInterval(() => {
+                    setReload(!reload);
+                },2000)
+                setSocket(socket);
             })
         }
     },[rooms,endpoint,onUpdateRoom,user])
@@ -40,7 +44,10 @@ const FindRooms = (props) => {
     const backButton = (
         <Button 
         onClick={
-            () => props.history.goBack()
+            () => {
+                socket.emit('disc');
+                props.history.push('/menu')
+            }
         }
         style={{
             transform : 'scale(0.9)',

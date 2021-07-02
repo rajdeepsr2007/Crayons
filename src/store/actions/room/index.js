@@ -21,10 +21,10 @@ const createRoomFailed = (error) => {
     }
 }
 
-export const createRoom = (rounds , drawingTime , words , user) => {
+export const createRoom = (rounds , drawingTime , words ) => {
     return dispatch => {
         dispatch(createRoomStart());
-        axiosInstance.post('/api/room/create',{ rounds , drawingTime , words , user })
+        axiosInstance.post('/api/room/create',{ rounds , drawingTime , words })
         .then( response => {
             if( response ){
                 dispatch( createRoomSuccess( response.data.roomId ) )

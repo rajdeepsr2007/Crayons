@@ -28,10 +28,14 @@ export const authUser = (username , password) => {
         axiosInstance.post('/api/auth', { username , password })
         .then( response => {
             if( response ){
-                if( response.data.success )
+                if( response.data.success ){
+                    localStorage.setItem('username' , username);
+                    localStorage.setItem('password' , password)
                     dispatch(authUserSuccess(response.data.userId , response.data.message))
-                else
+                }
+                else{
                     dispatch(authUserFailed(response.data.message))
+                }
             }else{
                 dispatch(authUserFailed('Network Error'))
             }
@@ -39,5 +43,27 @@ export const authUser = (username , password) => {
         .catch(error => {
             dispatch(authUserFailed(error.message))
         })
+    }
+}
+
+export const autoLogin = () => {
+    return dispatch => {
+        const username = localStorage.getItem('username');
+        const password = localStorage.getItem('password');
+        if( username && password ){
+            axiosInstance.post('/api/auth', { username , password })
+            .then( response => {
+                if( response ){
+                    if( response.data.success ){
+                        localStorage.setItem('user' , response.data.userId);
+                        localStorage.setItem('password' , password)
+                        dispatch(authUserSuccess(response.data.userId , response.data.message))
+                    }
+                }
+            })
+            .catch(error => {
+                console.log('auto login error')
+            })
+        }    
     }
 }

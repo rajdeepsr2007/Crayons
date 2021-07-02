@@ -1,5 +1,6 @@
 export{
-    authUser
+    authUser,
+    autoLogin
 } from './auth/';
 
 export{

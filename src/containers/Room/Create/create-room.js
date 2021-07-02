@@ -21,7 +21,7 @@ const CreateRoom = (props) => {
 
     useEffect( () => {
         if( roomId ){
-            history.replace(`/play/${roomId}`)
+            history.replace(`/waiting/${roomId}`)
         }
     } , [roomId , history] )
 
@@ -34,7 +34,6 @@ const CreateRoom = (props) => {
             controls.controls.rounds.value ,
             controls.controls.drawingTime.value, 
             controls.controls.words.value,
-            props.user
         )
     }
 
@@ -50,6 +49,19 @@ const CreateRoom = (props) => {
             {props.error}
         </Alert>
         : null
+    )
+
+    const backButton = (
+        <Button 
+        onClick={
+            () => props.history.goBack()
+        }
+        style={{
+            transform : 'scale(1)',
+            margin : '0 0 1rem 0'
+        }}>
+            {'< Back'}
+        </Button>
     )
 
     
@@ -107,6 +119,7 @@ const CreateRoom = (props) => {
             {Inputs}
             {error}
             {createRoomButton}
+            {backButton}
         </Card>
     )
 
@@ -120,13 +133,12 @@ const mapStateToProps = state => {
         loading : state.room.creating ,
         error : state.room.error ,
         roomId : state.room.createdRoomId ,
-        user : state.auth.user
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return{
-        onCreateRoom : (rounds , drawingTime , words , user ) => dispatch(actions.createRoom(rounds , drawingTime , words , user)),
+        onCreateRoom : (rounds , drawingTime , words ) => dispatch(actions.createRoom(rounds , drawingTime , words )),
         reset : () => dispatch(actions.resetRoomId())
     }
 }

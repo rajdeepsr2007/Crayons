@@ -15,7 +15,7 @@ const Rooms = (props) => {
     } )
 
     const onJoinRoom = (roomId) => {
-        props.history.push(`/play/${roomId}`)
+        props.history.push(`/waiting/${roomId}`)
     }
 
     return(
