@@ -139,7 +139,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return{
         onCreateRoom : (rounds , drawingTime , words ) => dispatch(actions.createRoom(rounds , drawingTime , words )),
-        reset : () => dispatch(actions.resetRoomId())
+        reset : () => dispatch(actions.resetRoom())
     }
 }
 

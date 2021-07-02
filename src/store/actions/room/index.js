@@ -90,8 +90,8 @@ export const updateRoom = (data) => {
     }
 }
 
-export const resetRoomId = () => {
+export const resetRoom = () => {
     return{
-        type : actionTypes.RESET_ROOMID
+        type : actionTypes.RESET_ROOM
     }
 }

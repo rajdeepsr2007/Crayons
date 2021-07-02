@@ -18,7 +18,7 @@ const reducer = (state=initialState , action) => {
         case actionTypes.CREATE_ROOM_FAILED :
             return {...initialState , error : action.error }
 
-        case actionTypes.RESET_ROOMID :
+        case actionTypes.RESET_ROOM :
             return {...initialState} 
 
         case actionTypes.FIND_ROOMS_START : 

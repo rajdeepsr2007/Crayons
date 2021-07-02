@@ -9,22 +9,21 @@ import socketIOClient from 'socket.io-client';
 
 const FindRooms = (props) => {
 
-    const {rooms , onFindRooms , user , onUpdateRoom} = props;
+    const {rooms , onFindRooms , user , onUpdateRoom , reset} = props;
     const [endpoint] = useState('http://localhost:9000');
     const [socket,setSocket] = useState(null);
-    const [reload,setReload] = useState(false);
-
 
     useEffect(() => {
         if( rooms.length === 0 ){
             onFindRooms()
         }
-    } , [rooms , onFindRooms])
+    } , [reset])
 
-    console.log(socket);
 
     useEffect(() => {
-        
+        return () => {
+            reset();
+        }
     },[])
 
     useEffect(() => {
@@ -33,9 +32,6 @@ const FindRooms = (props) => {
                 endpoint
             )
             socket.on('connected', () => {
-                setInterval(() => {
-                    setReload(!reload);
-                },2000)
                 setSocket(socket);
             })
         }
@@ -45,7 +41,7 @@ const FindRooms = (props) => {
         <Button 
         onClick={
             () => {
-                socket.emit('disc');
+                socket.emit('socket-disconnect');
                 props.history.push('/menu')
             }
         }
@@ -84,7 +80,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return{
         onFindRooms : () => dispatch(actions.findRooms()),
-        onUpdateRoom : (data) => dispatch(actions.updateRoom(data))
+        onUpdateRoom : (data) => dispatch(actions.updateRoom(data)),
+        reset : () => dispatch(actions.resetRoom())
     }
 }
 

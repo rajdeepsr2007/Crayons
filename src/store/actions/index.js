@@ -5,7 +5,7 @@ export{
 
 export{
     createRoom,
-    resetRoomId,
+    resetRoom,
     findRooms,
     updateRoom
 } from './room/';
