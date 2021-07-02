@@ -5,6 +5,8 @@ import * as actions from '../../../store/actions/';
 import {connect} from 'react-redux';
 import Rooms from '../../../components/Rooms/rooms';
 import socketIOClient from 'socket.io-client';
+import Loader from '../../../components/UI/Loader/loader-big';
+import Alert from '../../../components/Feedback/Alert/alert';
 
 
 const FindRooms = (props) => {
@@ -31,17 +33,36 @@ const FindRooms = (props) => {
             const socket = socketIOClient(
                 endpoint
             )
+            const roomIds = rooms.map(room => room.roomId)
             socket.on('connected', () => {
+                socket.on('room-update' , data => {
+                    onUpdateRoom(data);
+                })
+                socket.emit('join-leave-room', {
+                    type : 'info',
+                    roomIds ,
+                    join : 'join'
+                })
                 setSocket(socket);
             })
         }
     },[rooms,endpoint,onUpdateRoom,user])
 
+    const loading = props.loading ? <Loader /> : null;
+    const error = props.error ? 
+                  <Alert type='error' >
+                      {props.error}
+                  </Alert> : null
+
     const backButton = (
         <Button 
         onClick={
             () => {
-                socket.emit('socket-disconnect');
+                if( socket ){
+                    socket.emit(
+                        'socket-disconnect'
+                    )
+                }
                 props.history.push('/menu')
             }
         }
@@ -59,6 +80,8 @@ const FindRooms = (props) => {
         }}>
             <h3>Rooms</h3>
             <Rooms rooms={props.rooms} />
+            {loading}
+            {error}
             {backButton}
         </Card>
     )

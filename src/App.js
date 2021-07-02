@@ -5,7 +5,7 @@ import {BrowserRouter, Switch , Route , Redirect} from 'react-router-dom';
 import Menu from "./containers/Menu/menu";
 import CreateRoom from "./containers/Room/Create/create-room";
 import FindRooms from "./containers/Room/Find/find-rooms";
-import Waiting from "./containers/Game/Waiting/waiting";
+import Waiting from "./containers/Waiting/waiting";
 import {connect} from 'react-redux';
 import * as actions from './store/actions/';
 
@@ -15,7 +15,7 @@ function App(props) {
   const {onAutoLogin , user } = props;
   useEffect(() => {
     if( !user ){
-      onAutoLogin();
+      //onAutoLogin();
     }
   },[onAutoLogin,user])
 

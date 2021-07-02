@@ -20,12 +20,12 @@ const Room = (props) => {
     let roomStatusText = '';
     const roomStatusClasses = !room.users || room.users.length === 0 ?
                             [classes.not_started]
-                            : room.cround === 0 ?
+                            : parseInt(room.cround) === 0 ?
                             [classes.waiting]
                             : [classes.started]
     roomStatusText = !room.users || room.users.length === 0 ? 
                      'Not Started'
-                     : room.cround === 0 ?
+                     : parseInt(room.cround) === 0 ?
                      'Waiting...'
                      : `Round ${room.cround} / ${room.rounds}`
 

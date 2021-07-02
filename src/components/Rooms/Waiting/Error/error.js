@@ -6,6 +6,7 @@ import Alert from '../../../Feedback/Alert/alert';
 const Error = (props) => {
     const goToMenuButton = (
         <Button
+        style={{ margin : '0' }}
         onClick={
             () => props.history.replace('/menu')
         }
@@ -13,11 +14,22 @@ const Error = (props) => {
             Menu
         </Button>
     )
+    const findRoomsButton = (
+        <Button
+        style={{ margin : '0.5rem' }}
+        onClick={
+            () => props.history.replace('/find-rooms')
+        }
+        >
+            Find Another Room
+        </Button>
+    )
     const errorCard = (
         <Card>
             <Alert type="error">
                 {props.children}
             </Alert>
+            {findRoomsButton}
             {goToMenuButton}
         </Card>
     )
