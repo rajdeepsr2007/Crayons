@@ -8,7 +8,7 @@ import Avatar from '../../components/Avatar/avatar';
 import Alert from '../../components/Feedback/Alert/alert';
 import {connect} from 'react-redux';
 import * as actions from '../../store/actions/';
-import Loader from '../../components/UI/Loader/loader';
+import Loader from '../../components/UI/Loader/loader-small';
 import controlsReducer from './controlsReducer';
 
 const Auth = (props) => {

@@ -8,7 +8,7 @@ import Alert from '../../../components/Feedback/Alert/alert';
 import Button from '../../../components/Inputs/Button/button';
 import {connect} from 'react-redux';
 import * as actions from '../../../store/actions/';
-import Loader from '../../../components/UI/Loader/loader';
+import Loader from '../../../components/UI/Loader/loader-small';
 
 const CreateRoom = (props) => { 
     

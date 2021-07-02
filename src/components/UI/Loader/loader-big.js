@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './loader.module.css';
+import classes from './loader-big.module.css';
 
 const Loader = () => {
     return(
