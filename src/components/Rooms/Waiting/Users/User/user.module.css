@@ -3,7 +3,8 @@
     margin-right : 0.3rem;
     text-align : center;
     margin-bottom : 2rem;
-    position : relative
+    position : relative;
+    box-sizing: border-box;
 }
 .user .crown{
     height : 2rem;
@@ -18,4 +19,15 @@
 }
 .user .label{
     color : green
+}
+.user .options{
+    display: none;
+    cursor: pointer;
+}
+.user:hover .options{
+    display: block;
+}
+.user:hover{
+    transform: scale(1.1);
+    cursor: pointer;
 }

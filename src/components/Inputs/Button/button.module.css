@@ -15,3 +15,8 @@
 .button:hover{
     background: linear-gradient(rgb(75, 153, 75) , rgb(124, 166, 201)) ;
 }
+.button.disabled{
+    background: rgb(231, 227, 227);
+    border: rgb(231, 227, 227);
+    color : grey
+}

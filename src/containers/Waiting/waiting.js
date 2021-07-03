@@ -81,7 +81,9 @@ const Waiting = (props) => {
         <Card  style={{width : 'auto'}}  >
             <Logo />
             <div>
-                <Users room={room}/>
+                <Users 
+                iuser={user}
+                room={room}/>
                 {exitButton}
             </div>
         </Card>

@@ -36,12 +36,17 @@ const Room = (props) => {
         </div>
     )
 
+    const disabled =  users >= 8;
+
     const joinButton = (
         <Button 
         style={{ width : '5rem' , margin : '0' }}
         onClick={
-            props.onClick
+            disabled ?
+            () => {}
+            : props.onClick
         }
+        disabled={disabled}
         >
             Join
         </Button>

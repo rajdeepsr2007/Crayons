@@ -6,12 +6,14 @@ import classes from './users.module.css';
 
 const Users = (props) => {
 
-    const {users , admin} = props.room;
+    const {users , admin } = props.room;
+    const {iuser} = props;
     const userObjects = users.map( user => {
         return(
             <User
-            admin={user._id==admin}
+            admin={admin}
             user={user}
+            iadmin={iuser === admin}
             />
         )
     })
