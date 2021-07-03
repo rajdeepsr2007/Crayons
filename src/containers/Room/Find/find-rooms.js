@@ -74,12 +74,21 @@ const FindRooms = (props) => {
         </Button>
     )
 
+    const onJoinRoom = () => {
+        if( socket ){
+            socket.emit('socket-disconnect')
+        }
+    }
+
     const roomsCard = (
         <Card style={{
             justifyContent : 'space-between'
         }}>
             <h3>Rooms</h3>
-            <Rooms rooms={props.rooms} />
+            <Rooms 
+            rooms={props.rooms} 
+            onJoinRoom={onJoinRoom}
+            />
             {loading}
             {error}
             {backButton}
@@ -103,7 +112,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return{
         onFindRooms : () => dispatch(actions.findRooms()),
-        onUpdateRoom : (data) => dispatch(actions.updateRoom(data)),
+        onUpdateRoom : (data) => dispatch(actions.updateRooms(data)),
         reset : () => dispatch(actions.resetRoom())
     }
 }

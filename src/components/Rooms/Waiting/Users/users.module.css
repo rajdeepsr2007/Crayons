@@ -1,0 +1,7 @@
+.users{
+    margin-top: 2rem;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
+}

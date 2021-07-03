@@ -17,6 +17,15 @@ const reducer = (state=initialState , action) => {
         case actionTypes.LOAD_ROOM_FAILED :
             return {...initialState , error : action.error}
 
+        case actionTypes.UPDATE_ROOM :
+            return{
+                ...state,
+                room : {
+                    ...state.room ,
+                    ...action.data.room
+                }
+            }
+
         default:
             return state;
     }

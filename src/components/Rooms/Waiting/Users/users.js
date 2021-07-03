@@ -1,8 +1,21 @@
 import React from 'react';
 import Card from '../../../UI/Card/card';
 import Title from '../../../UI/Title/title';
+import User from './User/user';
+import classes from './users.module.css';
 
 const Users = (props) => {
+
+    const {users , admin} = props.room;
+    const userObjects = users.map( user => {
+        return(
+            <User
+            admin={user._id==admin}
+            user={user}
+            />
+        )
+    })
+
     const usersCard = (
         <Card style={{ 
             width : '80%',
@@ -11,8 +24,11 @@ const Users = (props) => {
             paddingTop : '0'
         }} >
             <Title>
-                Players
+                Players {`(${users.length})`}
             </Title>
+            <div className={classes.users} >
+                {userObjects}
+            </div>
         </Card>
     )
     return (

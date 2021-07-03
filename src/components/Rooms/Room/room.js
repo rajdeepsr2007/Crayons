@@ -39,7 +39,9 @@ const Room = (props) => {
     const joinButton = (
         <Button 
         style={{ width : '5rem' , margin : '0' }}
-        onClick={props.onClick}
+        onClick={
+            props.onClick
+        }
         >
             Join
         </Button>

@@ -7,9 +7,10 @@ export{
     createRoom,
     resetRoom,
     findRooms,
-    updateRoom
+    updateRooms
 } from './room/';
 
 export{
-    loadRoom
+    loadRoom,
+    updateRoom
 } from './room/waiting/'

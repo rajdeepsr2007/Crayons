@@ -15,3 +15,4 @@ export const UPDATE_ROOM = 'UPDATE_ROOM';
 export const LOAD_ROOM_START = 'LOAD_ROOM_START';
 export const LOAD_ROOM_SUCCESS = 'LOAD_ROOM_SUCCESS';
 export const LOAD_ROOM_FAILED = 'LOAD_ROOM_FAILED';
+export const UPDTAE_ROOM = 'UPDATE_ROOM';

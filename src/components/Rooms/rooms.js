@@ -15,6 +15,7 @@ const Rooms = (props) => {
     } )
 
     const onJoinRoom = (roomId) => {
+        props.onJoinRoom();
         props.history.push(`/waiting/${roomId}`)
     }
 

@@ -12,7 +12,7 @@ import Button from '../../components/Inputs/Button/button';
 const Waiting = (props) => {
 
     const [roomId , setRoomId] = useState(null);
-    const {onLoadRoom , loading , error, user} = props;
+    const {onLoadRoom , loading , error, user , onUpdateRoom , room} = props;
     const [socket , setSocket] = useState(null);
     const endpoint = 'http://localhost:9000'
 
@@ -53,7 +53,7 @@ const Waiting = (props) => {
                     user
                 })
                 socket.on('room-update' , data => {
-                    
+                    onUpdateRoom(data);
                 })
                 setSocket(socket);
             })
@@ -69,7 +69,7 @@ const Waiting = (props) => {
         )
     }
 
-    if(error){
+    if(error || !room){
         return <Error
                 history={props.history}
                 >
@@ -81,7 +81,7 @@ const Waiting = (props) => {
         <Card  style={{width : 'auto'}}  >
             <Logo />
             <div>
-                <Users />
+                <Users room={room}/>
                 {exitButton}
             </div>
         </Card>
@@ -103,7 +103,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return{
-        onLoadRoom : (roomId) => dispatch(actions.loadRoom(roomId))
+        onLoadRoom : (roomId) => dispatch(actions.loadRoom(roomId)),
+        onUpdateRoom : (data) => dispatch(actions.updateRoom(data))
     }
 }
 

@@ -1,0 +1,21 @@
+.user{
+    width : 5rem ; 
+    margin-right : 0.3rem;
+    text-align : center;
+    margin-bottom : 2rem;
+    position : relative
+}
+.user .crown{
+    height : 2rem;
+    width : 2rem;
+    position : absolute;
+    top : -1rem ;
+    left : -0.2rem
+}
+.user .crown img{
+    height: inherit;
+    width: inherit;
+}
+.user .label{
+    color : green
+}

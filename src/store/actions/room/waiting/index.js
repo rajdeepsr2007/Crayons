@@ -40,3 +40,10 @@ export const loadRoom = (roomId) => {
         })
     }
 }
+
+export const updateRoom = (data) => {
+    return{
+        type : actionTypes.UPDATE_ROOM,
+        data
+    }
+}

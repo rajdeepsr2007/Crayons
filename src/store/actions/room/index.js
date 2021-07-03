@@ -83,7 +83,7 @@ export const findRooms = () => {
     }
 }
 
-export const updateRoom = (data) => {
+export const updateRooms = (data) => {
     return{
         type : actionTypes.UPDATE_ROOM,
         data
