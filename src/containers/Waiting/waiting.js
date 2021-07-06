@@ -40,6 +40,7 @@ const Waiting = (props) => {
         </Button>
     )
 
+    
     useEffect(() => {
         if( roomId ){
             const socket = socketIOClient(
@@ -77,13 +78,28 @@ const Waiting = (props) => {
                 </Error>
     }
 
+    let onMakeHost = () => {};
+    if( room.admin === user ){
+        onMakeHost = (id) => {
+            if( socket ){
+                socket.emit('change-host' , {
+                    roomId : room.roomId ,
+                    user : id
+                })
+            }
+        }
+        console.log(onMakeHost)
+    }
+
     const roomCard = (
         <Card  style={{width : 'auto'}}  >
             <Logo />
             <div>
                 <Users 
                 iuser={user}
-                room={room}/>
+                room={room}
+                onMakeHost={onMakeHost}
+                />
                 {exitButton}
             </div>
         </Card>

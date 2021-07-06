@@ -7,13 +7,14 @@ import classes from './users.module.css';
 const Users = (props) => {
 
     const {users , admin } = props.room;
-    const {iuser} = props;
+    const {iuser , onMakeHost} = props;
     const userObjects = users.map( user => {
         return(
             <User
             admin={admin}
             user={user}
             iadmin={iuser === admin}
+            onMakeHost={onMakeHost}
             />
         )
     })

@@ -5,7 +5,7 @@ import classes from './user.module.css';
 import Button from '../../../../Inputs/Button/button';
 
 const User = (props) => {
-    const {user , admin  , iadmin} = props;
+    const {user , admin  , iadmin  , onMakeHost} = props;
     let crown = null;
 
     if( admin === user._id ){
@@ -16,6 +16,7 @@ const User = (props) => {
         )
     }
 
+    console.log(onMakeHost);
 
     let userOptions = null;
     if(iadmin && user._id != admin ){
@@ -26,7 +27,10 @@ const User = (props) => {
         }
         userOptions = (
             <div className={classes.options} >
-                <Button style={buttonStyle} >
+                <Button 
+                style={buttonStyle} 
+                onClick={() => onMakeHost(user._id)}
+                >
                     Make Host
                 </Button>
                 <Button style={buttonStyle}>

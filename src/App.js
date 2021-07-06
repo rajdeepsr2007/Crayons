@@ -15,7 +15,7 @@ function App(props) {
   const {onAutoLogin , user } = props;
   useEffect(() => {
     if( !user ){
-      //onAutoLogin();
+      onAutoLogin();
     }
   },[onAutoLogin,user])
 
