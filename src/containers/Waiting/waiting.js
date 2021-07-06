@@ -56,6 +56,10 @@ const Waiting = (props) => {
                 socket.on('room-update' , data => {
                     onUpdateRoom(data);
                 })
+                socket.on('socket-disconnect' , () => {
+                    socket.emit('socket-disconnect');
+                    props.history.replace('/find-rooms')
+                })
                 setSocket(socket);
             })
         }
@@ -78,7 +82,7 @@ const Waiting = (props) => {
                 </Error>
     }
 
-    let onMakeHost = () => {};
+    let onMakeHost = () => {}; let onRemoveUser = () => {};
     if( room.admin === user ){
         onMakeHost = (id) => {
             if( socket ){
@@ -88,7 +92,14 @@ const Waiting = (props) => {
                 })
             }
         }
-        console.log(onMakeHost)
+        onRemoveUser = (id) => {
+            if( socket ){
+                socket.emit('remove-user' , {
+                    roomId : room.roomId ,
+                    user : id
+                })
+            }
+        }
     }
 
     const roomCard = (
@@ -99,6 +110,7 @@ const Waiting = (props) => {
                 iuser={user}
                 room={room}
                 onMakeHost={onMakeHost}
+                onRemoveUser={onRemoveUser}
                 />
                 {exitButton}
             </div>

@@ -5,7 +5,7 @@ import classes from './user.module.css';
 import Button from '../../../../Inputs/Button/button';
 
 const User = (props) => {
-    const {user , admin  , iadmin  , onMakeHost} = props;
+    const {user , admin  , iadmin  , onMakeHost , onRemoveUser } = props;
     let crown = null;
 
     if( admin === user._id ){
@@ -16,7 +16,6 @@ const User = (props) => {
         )
     }
 
-    console.log(onMakeHost);
 
     let userOptions = null;
     if(iadmin && user._id != admin ){
@@ -33,7 +32,9 @@ const User = (props) => {
                 >
                     Make Host
                 </Button>
-                <Button style={buttonStyle}>
+                <Button 
+                onClick={() => onRemoveUser(user._id)}
+                style={buttonStyle}>
                     Remove
                 </Button>
             </div>
