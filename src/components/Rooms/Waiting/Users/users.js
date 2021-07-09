@@ -22,7 +22,7 @@ const Users = (props) => {
 
     const usersCard = (
         <Card style={{ 
-            width : '80%',
+            width : '12rem',
             height : '25rem',
             margin : '2rem 0 0 0',
             paddingTop : '0'

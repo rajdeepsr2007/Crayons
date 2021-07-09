@@ -8,6 +8,9 @@ import Logo from '../../components/Logo/logo';
 import Users from '../../components/Rooms/Waiting/Users/users';
 import socketIOClient from 'socket.io-client';
 import Button from '../../components/Inputs/Button/button';
+import { withRouter } from 'react-router';
+import OtherUsers from './Users/users';
+import classes from './waiting.module.css';
 
 const Waiting = (props) => {
 
@@ -105,15 +108,18 @@ const Waiting = (props) => {
     const roomCard = (
         <Card  style={{width : 'auto'}}  >
             <Logo />
-            <div>
+            <div className={classes.waiting} >
                 <Users 
                 iuser={user}
                 room={room}
                 onMakeHost={onMakeHost}
                 onRemoveUser={onRemoveUser}
                 />
-                {exitButton}
+                <div>
+                    <OtherUsers />
+                </div>
             </div>
+            {exitButton}
         </Card>
     )
 
@@ -138,4 +144,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Waiting);
+export default connect(mapStateToProps,mapDispatchToProps)(withRouter(Waiting));

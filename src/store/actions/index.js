@@ -14,3 +14,7 @@ export{
     loadRoom,
     updateRoom
 } from './room/waiting/'
+
+export{
+    loadUsers
+} from './user/'
