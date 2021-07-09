@@ -17,5 +17,6 @@ export{
 
 export{
     loadUsers,
-    updateUsers
+    updateUsers,
+    toggleFriend
 } from './user/'

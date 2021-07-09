@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import Search from './Search/search';
 import * as actions from '../../../store/actions';
 import {connect} from 'react-redux';
+import UserFriends from './User Friends/user-friends';
 
 const Users = (props) => {
 
@@ -15,9 +16,13 @@ const Users = (props) => {
     } , [] );
 
     return(
-        <Search
-        userSocket={userSocket}
-        />
+        <Fragment>
+            <Search
+            userSocket={userSocket}
+            />
+            <UserFriends />
+        </Fragment>
+        
     )
 }
 

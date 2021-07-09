@@ -22,7 +22,7 @@ const Search = (props) => {
 
     const [emitted , setEmitted] = useState(true);
 
-    const {onSearch , loading , error , users , userSocket } = props;
+    const {onSearch , loading , error , users , userSocket , user } = props;
 
     useEffect(() => {
         if( !emitted && !loading){
@@ -45,7 +45,8 @@ const Search = (props) => {
                     {
                         type : 'search',
                         value : event.target.value
-                    }
+                    },
+                    props.user
                 )
             } , 2000);  
         }
@@ -56,20 +57,32 @@ const Search = (props) => {
     
     const searchCardStyle = {
         margin : '2rem 0 0 2rem',
-        paddingTop : '0',
         width : 'auto',
-        height : 'auto'
+        height : 'auto',
+        paddingTop : '0'
     }
     const input = <CustomInputs 
                    controls={controls}
                    onChange={onChange}
-                   />  
+                   /> 
+                   
+    const toggleFriend = (friendId) => {
+        if( !props.friendLoading ){
+            props.onToggleFriend(
+                user ,
+                friendId
+            )
+        }
+    }
 
     const content = loading ?
                     <Loader />
                     : error ? 
                     <Alert type="error">{error}</Alert>
-                    : <Users users={users} />
+                    : <Users 
+                       users={users} 
+                       onClick={toggleFriend}
+                       />
                       
     const searchCard = (
         <Card
@@ -90,13 +103,15 @@ const mapStateToProps = state => {
         users : state.users.users.search,
         loading : state.users.loading.search,
         error : state.users.error.search,
-
+        user : state.auth.user,
+        friendLoading : state.users.loading.friend
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return{
-        onSearch : (filter) => dispatch(actions.loadUsers(filter))
+        onSearch : (filter , user) => dispatch(actions.loadUsers(filter , user)),
+        onToggleFriend : (userId , friendId) => dispatch(actions.toggleFriend(userId , friendId))
     }
 }
 

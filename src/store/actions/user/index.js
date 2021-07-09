@@ -23,10 +23,10 @@ const loadUsersFailed = (error , filter) => {
     }
 }
 
-export const loadUsers = (filter) => {
+export const loadUsers = (filter , user) => {
     return dispatch => {
         dispatch(loadUsersStart(filter));
-        axiosInstance.get('/api/users/' + filter.type + '/' + filter.value )
+        axiosInstance.get('/api/users/' + filter.type + '/' + filter.value + '/' + user )
         .then( response => {
             if( response ){
                 dispatch(loadUsersSuccess(response.data.users , filter));
@@ -46,3 +46,37 @@ export const updateUsers = (data) => {
         data
     }
 }
+
+const toggleFriendStart = () => {
+    return{
+        type : actionTypes.TOGGLE_FRIEND_START 
+    }
+}
+const toggleFriendSuccess = (user) => {
+    return{
+        type : actionTypes.TOGGLE_FRIEND_SUCCESS,
+        user
+    }
+}
+const toggleFriendFailed = () => {
+    return{
+        type : actionTypes.TOGGLE_FRIEND_FAILED
+    }
+}
+export const toggleFriend = (userId , friendId) => {
+    return dispatch => {
+        dispatch(toggleFriendStart());
+        axiosInstance.get(`/api/users/friend/${userId}/${friendId}`)
+        .then(response => {
+            if( response ){
+                dispatch(toggleFriendSuccess({ userId : friendId ,  friend : response.data.friend }))
+            }else{
+                dispatch(toggleFriendFailed());
+            }
+        })
+        .catch(error => {
+            dispatch(toggleFriendFailed());
+        })
+    }
+}
+

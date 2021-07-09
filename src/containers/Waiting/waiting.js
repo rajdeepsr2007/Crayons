@@ -116,11 +116,11 @@ const Waiting = (props) => {
                 onMakeHost={onMakeHost}
                 onRemoveUser={onRemoveUser}
                 />
-                <div>
+               
                     <OtherUsers
                     userSocket={userSocket}
                     />
-                </div>
+                
             </div>
             {exitButton}
         </Card>

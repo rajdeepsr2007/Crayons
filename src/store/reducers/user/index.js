@@ -3,7 +3,8 @@ import * as actionTypes from '../../../store/actions/actionTypes';
 const initialState = {
     loading : {
         search : false , 
-        friends : false 
+        friends : false ,
+        friend : false
     } ,
     error : {
         search : null ,
@@ -62,6 +63,26 @@ const reducer = (state=initialState , action) => {
                 }
             }
             return updatedState;
+        
+        case actionTypes.TOGGLE_FRIEND_START : 
+            updatedState = copyState(state);
+            updatedState.loading.friend = true;
+            return updatedState;
+
+        case actionTypes.TOGGLE_FRIEND_SUCCESS :
+            updatedState = copyState(state);
+            updatedState.loading.friend = false;
+            for( const user of updatedState.users.search ){
+                if( user._id === action.user.userId )
+                    user.friend = action.user.friend
+            }
+            return updatedState;
+
+        case actionTypes.TOGGLE_FRIEND_FAILED : 
+            updatedState = copyState(state);
+            updatedState.loading.friend = false;
+            return updatedState;
+
         default :
             return state;
     }
