@@ -18,6 +18,7 @@ const Waiting = (props) => {
     const {onLoadRoom , loading , error, user , onUpdateRoom , room} = props;
     const [socket , setSocket] = useState(null);
     const endpoint = 'http://localhost:9000'
+    const userSocket = props.usersSocket;
 
     useEffect(() => {
         if( !roomId ){
@@ -116,7 +117,9 @@ const Waiting = (props) => {
                 onRemoveUser={onRemoveUser}
                 />
                 <div>
-                    <OtherUsers />
+                    <OtherUsers
+                    userSocket={userSocket}
+                    />
                 </div>
             </div>
             {exitButton}

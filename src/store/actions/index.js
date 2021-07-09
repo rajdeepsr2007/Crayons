@@ -16,5 +16,6 @@ export{
 } from './room/waiting/'
 
 export{
-    loadUsers
+    loadUsers,
+    updateUsers
 } from './user/'

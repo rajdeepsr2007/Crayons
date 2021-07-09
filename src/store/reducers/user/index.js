@@ -17,7 +17,7 @@ const initialState = {
 
 const copyState = (state) => {
     const updatedState = {
-        loading : {...state.laoding} ,
+        loading : {...state.loading} ,
         error : {...state.error} , 
         users : {
             search : [] ,
@@ -35,7 +35,7 @@ const reducer = (state=initialState , action) => {
     let updatedState;
     switch(action.type){
         case actionTypes.LOAD_USERS_START : 
-            updatedState = copyState(state);
+            updatedState = copyState(state)
             updatedState.loading[action.filter.type] = true;
             updatedState.error[action.filter.type] = null;
             return updatedState;
@@ -52,6 +52,16 @@ const reducer = (state=initialState , action) => {
             updatedState.error[action.filter.type] = action.error;
             return updatedState;
 
+        case actionTypes.UPDATE_USERS : 
+            updatedState = copyState(state);
+            for( const user of action.data.users ){
+                for( const usr of updatedState.users.search ){
+                    if( usr._id === user.userId ){
+                        usr.lastSeen = user.lastSeen
+                    }
+                }
+            }
+            return updatedState;
         default :
             return state;
     }

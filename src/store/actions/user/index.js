@@ -39,3 +39,10 @@ export const loadUsers = (filter) => {
         })
     } 
 }
+
+export const updateUsers = (data) => {
+    return{
+        type : actionTypes.UPDATE_USERS ,
+        data
+    }
+}

@@ -9,6 +9,7 @@ import Waiting from "./containers/Waiting/waiting";
 import {connect} from 'react-redux';
 import * as actions from './store/actions/';
 import socketIOClient from "socket.io-client";
+import Loader from "./components/UI/Loader/loader-big";
 
 function App(props) {
 
@@ -35,7 +36,7 @@ function App(props) {
     },[user])
 
     if( user ){
-      routes = (
+      routes = socket ?  (
         <Switch>
           <Route path='/find-rooms' component={FindRooms} />
           <Route path='/waiting/:roomId' render={() => <Waiting usersSocket={socket}/> } />
@@ -43,7 +44,7 @@ function App(props) {
           <Route path='/create-room' component={CreateRoom} />
           <Redirect to='/menu' />
         </Switch>
-      )
+      ) : <Loader />
     }else{
       routes = (
         <Switch>
