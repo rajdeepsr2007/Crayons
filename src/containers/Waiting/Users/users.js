@@ -17,10 +17,12 @@ const Users = (props) => {
 
     return(
         <Fragment>
-            <Search
+            <UserFriends
             userSocket={userSocket}
             />
-            <UserFriends />
+             <Search
+            userSocket={userSocket}
+            />
         </Fragment>
         
     )

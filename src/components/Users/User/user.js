@@ -6,7 +6,7 @@ import Button from '../../Inputs/Button/button';
 import { Fragment } from 'react';
 
 const User = (props) => {
-    const {user , onClick} = props;
+    const {user , onClick , invite} = props;
     const avatarStyle={
         padding : '0' ,
         margin : '0' ,
@@ -21,7 +21,8 @@ const User = (props) => {
         lastSeen = <span className={classes.last_seen} >{formatDate(user.lastSeen)}</span>
 
     }
-    console.log(user);
+    let disabled = invite ? user.lastSeen === 'online' ? false : true : false;
+    const buttonOnClick = disabled ? () => {} : onClick
     const userCard = (
         <div className={classes.user} >
             <Avatar style={avatarStyle}/>
@@ -29,9 +30,9 @@ const User = (props) => {
             {lastSeen}
             <Button 
             style={{ transform : 'scale(0.8)' , margin : '0 ' , width : '8rem'}} 
-            onClick={() => onClick(user._id)}
+            onClick={() => buttonOnClick(user._id)} disabled={disabled}
             >
-                {user.friend  ? 'Remove' : 'Add Friend'}
+                {invite ? 'Invite' : user.friend  ? 'Remove' : 'Add Friend'}
             </Button>
         </div>
     )

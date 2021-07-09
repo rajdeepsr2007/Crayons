@@ -1,5 +1,6 @@
 import React from 'react';
 import background from '../../assets/background/background.jpg'
+import Notifications from './Notifications/notifications';
 import classes from './layout.module.css'
 
 const Layout = (props) => {
@@ -14,6 +15,9 @@ const Layout = (props) => {
         style={layoutStyle}
         >
             {props.children}
+            <Notifications 
+            userSocket={props.userSocket}
+            />
         </main>
     )
 }

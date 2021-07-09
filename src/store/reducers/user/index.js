@@ -62,6 +62,13 @@ const reducer = (state=initialState , action) => {
                     }
                 }
             }
+            for( const user of action.data.users ){
+                for( const usr of updatedState.users.friends ){
+                    if( usr._id === user.userId ){
+                        usr.lastSeen = user.lastSeen
+                    }
+                }
+            }
             return updatedState;
         
         case actionTypes.TOGGLE_FRIEND_START : 
@@ -72,9 +79,19 @@ const reducer = (state=initialState , action) => {
         case actionTypes.TOGGLE_FRIEND_SUCCESS :
             updatedState = copyState(state);
             updatedState.loading.friend = false;
+            let userObject = null;
             for( const user of updatedState.users.search ){
-                if( user._id === action.user.userId )
+                if( user._id === action.user.userId ){
                     user.friend = action.user.friend
+                    userObject = {...user};
+                }
+            }
+            if( action.user.friend ){
+                updatedState.users.friends.push(userObject);
+            }else{
+                updatedState.users.friends = updatedState.users.friends.filter( user => {
+                    return user._id !== action.user.userId
+                })
             }
             return updatedState;
 

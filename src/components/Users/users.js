@@ -5,7 +5,7 @@ import classes from './users.module.css';
 
 const Users = (props) => {
 
-    const {users , onClick} = props;
+    const {users , onClick , invite} = props;
     if( !users || users.length === 0 ){
         return(
             <div>
@@ -16,7 +16,7 @@ const Users = (props) => {
         )
     }
     const userObjects = users.map(user => {
-        return <User key={user._id} user={user} onClick={onClick}  />
+        return <User key={user._id} user={user} onClick={onClick} invite={invite} />
     })
     return(
      

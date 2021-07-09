@@ -35,6 +35,10 @@ function App(props) {
       }
     },[user])
 
+    if( !socket ){
+      return <Loader />
+    }
+
     if( user ){
       routes = socket ?  (
         <Switch>
@@ -56,7 +60,7 @@ function App(props) {
 
     return (
       <BrowserRouter>
-          <Layout>
+          <Layout userSocket={socket} >
             {routes}
           </Layout>
       </BrowserRouter>
