@@ -57,7 +57,10 @@ const Notifications = (props) => {
                 >
                     Join
                 </Button>
-                <Button style={buttonStyle} >
+                <Button 
+                style={buttonStyle} 
+                onClick={onDeclineInvite}
+                >
                     Ignore
                 </Button>
             </div>

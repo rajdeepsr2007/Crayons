@@ -8,17 +8,18 @@ import Users from '../../../../components/Users/users';
 import {connect} from 'react-redux';
 
 const UserFriends = (props) => {
-
-    const {onLoadUsers , user , error , loading , users , userSocket , room} = props;
+    const {onLoadUsers , user , error , loading , users , userSocket , room } = props;
     const [emitted , setEmitted] = useState(false);
     useEffect(() => {
-        onLoadUsers(
-            {
-                type : 'friends' ,
-                value : user
-            },
-            user
-        )
+        if( !users  ){
+            onLoadUsers(
+                {
+                    type : 'friends' ,
+                    value : user
+                },
+                user
+            )
+        }   
     },[]);
 
     useEffect(() => {
@@ -77,8 +78,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return{
-        onLoadUsers : (filter , userId) => dispatch(actions.loadUsers(filter , userId))
+        onLoadUsers : (filter , userId) => dispatch(actions.loadUsers(filter , userId)),
     }
 }
 
-export default connect(mapStateToProps , mapDispatchToProps)(UserFriends);
+export default connect(mapStateToProps , mapDispatchToProps)(React.memo(UserFriends));

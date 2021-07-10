@@ -80,3 +80,9 @@ export const toggleFriend = (userId , friendId) => {
     }
 }
 
+export const reset = () => {
+    return{
+        type : actionTypes.RESET
+    }
+}
+

@@ -12,7 +12,7 @@ const initialState = {
     } ,
     users : {
         search : [] ,
-        friends : []
+        friends : null
     }
 }
 
@@ -22,13 +22,17 @@ const copyState = (state) => {
         error : {...state.error} , 
         users : {
             search : [] ,
-            friends : []
+            friends : null
         }
     };
     for( const user of state.users.search )
         updatedState.users.search.push({...user});
-    for( const user of state.users.friends )
-        updatedState.users.friends.push({...user});
+    if( state.users.friends ){
+        updatedState.users.friends = [];
+        for( const user of state.users.friends )
+            updatedState.users.friends.push({...user});
+    }
+   
     return updatedState;
 }
 
@@ -45,6 +49,7 @@ const reducer = (state=initialState , action) => {
             updatedState = copyState(state);
             updatedState.loading[action.filter.type] = false;
             updatedState.users[action.filter.type] = action.users;
+            console.log('users loaded');
             return updatedState;
 
         case actionTypes.LOAD_USERS_FAILED :
@@ -98,6 +103,11 @@ const reducer = (state=initialState , action) => {
         case actionTypes.TOGGLE_FRIEND_FAILED : 
             updatedState = copyState(state);
             updatedState.loading.friend = false;
+            return updatedState;
+
+        case actionTypes.RESET :
+            updatedState = copyState(state);
+            updatedState.users.friends = null;
             return updatedState;
 
         default :

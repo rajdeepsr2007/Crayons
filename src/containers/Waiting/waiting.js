@@ -10,12 +10,13 @@ import socketIOClient from 'socket.io-client';
 import Button from '../../components/Inputs/Button/button';
 import { withRouter } from 'react-router';
 import OtherUsers from './Users/users';
+import Alert from '../../components/Feedback/Alert/alert';
 import classes from './waiting.module.css';
 
 const Waiting = (props) => {
 
     const [roomId , setRoomId] = useState(null);
-    const {onLoadRoom , loading , error, user , onUpdateRoom , room} = props;
+    const {onLoadRoom , loading , error, user , onUpdateRoom , room , reset} = props;
     const [socket , setSocket] = useState(null);
     const endpoint = 'http://localhost:9000'
     const userSocket = props.usersSocket;
@@ -29,14 +30,18 @@ const Waiting = (props) => {
                 props.match.params.roomId
             )
         }
+        return () => reset()
     },[])
 
     const exitButton = (
-        <Button onClick={
+        <Button 
+        style={{ margin : '1rem 0 0 0' }}
+        onClick={
             () => {
                 if(socket){
                     socket.emit('socket-disconnect')
                 }
+                userSocket.emit('leave-rooms');
                 props.history.replace('/find-rooms')
             }
         }>
@@ -106,9 +111,29 @@ const Waiting = (props) => {
         }
     }
 
+    const startButton = (
+        <Button 
+        style={{ 
+            margin : '3rem 0 0 0' ,
+            background  : 'rgb(73, 231, 73)'
+        }} >
+            Start
+        </Button>
+    )
+
+    let roomIdAlert = null;
+    if( room.admin === user ){
+        roomIdAlert = (
+            <Alert type="success">
+                Share RoomId <strong>{room.roomId}</strong> to join
+            </Alert>
+        )
+    }
+
     const roomCard = (
         <Card  style={{width : 'auto'}}  >
             <Logo />
+            {roomIdAlert}
             <div className={classes.waiting} >
                 <Users 
                 iuser={user}
@@ -117,11 +142,16 @@ const Waiting = (props) => {
                 onRemoveUser={onRemoveUser}
                 />
                
+                {
+                    room.admin === user ?
                     <OtherUsers
                     userSocket={userSocket}
                     />
+                    : null
+                }  
                 
             </div>
+            { room.admin === user ? startButton : null }
             {exitButton}
         </Card>
     )
@@ -143,7 +173,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return{
         onLoadRoom : (roomId) => dispatch(actions.loadRoom(roomId)),
-        onUpdateRoom : (data) => dispatch(actions.updateRoom(data))
+        onUpdateRoom : (data) => dispatch(actions.updateRoom(data)),
+        reset : () => dispatch(actions.reset())
     }
 }
 

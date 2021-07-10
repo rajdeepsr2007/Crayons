@@ -13,6 +13,8 @@ const Users = (props) => {
                 onUpdateUsers(data);
             });
         }
+
+        return () => userSocket.off('users-update');
     } , [] );
 
     return(
