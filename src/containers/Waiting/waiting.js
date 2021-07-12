@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState , Fragment } from 'react';
 import * as actions from '../../store/actions';
 import {connect} from 'react-redux';
 import Card from '../../components/UI/Card/card';
@@ -11,6 +11,7 @@ import Button from '../../components/Inputs/Button/button';
 import { withRouter } from 'react-router';
 import OtherUsers from './Users/users';
 import Alert from '../../components/Feedback/Alert/alert';
+import Play from '../Play/';
 import classes from './waiting.module.css';
 
 const Waiting = (props) => {
@@ -151,29 +152,39 @@ const Waiting = (props) => {
         )
     }
 
+    let content = null;
+    if( room.cround > 0 ){
+        content = <Play />
+    }else{
+        content = (
+            <Fragment>
+                <div className={classes.waiting} >
+                    <Users 
+                    iuser={user}
+                    room={room}
+                    onMakeHost={onMakeHost}
+                    onRemoveUser={onRemoveUser}
+                    />
+                
+                    {
+                        room.admin === user ?
+                        <OtherUsers
+                        userSocket={userSocket}
+                        />
+                        : null
+                    }  
+                </div>
+                {changeRoomVisibilityOption}
+                { startButton }
+            </Fragment>
+        )
+    }
+
     const roomCard = (
         <Card  style={{width : 'auto'}}  >
             <Logo />
             {roomIdAlert}
-            <div className={classes.waiting} >
-                <Users 
-                iuser={user}
-                room={room}
-                onMakeHost={onMakeHost}
-                onRemoveUser={onRemoveUser}
-                />
-               
-                {
-                    room.admin === user ?
-                    <OtherUsers
-                    userSocket={userSocket}
-                    />
-                    : null
-                }  
-                
-            </div>
-            {changeRoomVisibilityOption}
-            { startButton }
+            {content}
             {exitButton}
         </Card>
     )

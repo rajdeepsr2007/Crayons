@@ -1,0 +1,21 @@
+.controls{
+    display : flex;
+    justify-content:space-between
+}
+
+.controls  .brushwidthoptions{
+    display : inline-block ;
+    background : black ; 
+    border-radius : 50% ; 
+    cursor : pointer
+}
+.controls .brushwidthpicker{
+    display : flex; 
+    justify-content : space-between ;  
+    align-items : flex-end;
+    width : 100%;
+    height : 40%
+}
+.options{
+    display : flex;
+}
