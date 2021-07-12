@@ -90,8 +90,10 @@ const Waiting = (props) => {
                     {props.error}
                 </Error>
     }
-
-    let onMakeHost = () => {}; let onRemoveUser = () => {};
+    
+    let onMakeHost = () => {} ,  onRemoveUser = () => {} ,  startButton = null , 
+     roomIdAlert = null, changeRoomVisibility = null , changeRoomVisibilityOption=null,
+     startGame= null ;
     if( room.admin === user ){
         onMakeHost = (id) => {
             if( socket ){
@@ -109,24 +111,43 @@ const Waiting = (props) => {
                 })
             }
         }
-    }
-
-    const startButton = (
-        <Button 
-        style={{ 
-            margin : '3rem 0 0 0' ,
-            background  : 'rgb(73, 231, 73)'
-        }} >
-            Start
-        </Button>
-    )
-
-    let roomIdAlert = null;
-    if( room.admin === user ){
+        startGame = () => {
+            socket.emit('start-game' , {roomId : room.roomId} );
+        }
+        startButton = (
+            <Button 
+            style={{ 
+                margin : '3rem 0 0 0' ,
+                background  : 'rgb(73, 231, 73)'
+            }} 
+            onClick={startGame}
+            >
+                Start
+            </Button>
+        )
         roomIdAlert = (
             <Alert type="success">
                 Share RoomId <strong>{room.roomId}</strong> to join
             </Alert>
+        )
+        changeRoomVisibility = (event) => {
+            console.log(event.target.value);
+            socket.emit(
+                'change-room-visibility',
+                {roomId  : room.roomId , visibility : !room.visibility }
+            )
+        }
+        changeRoomVisibilityOption = (
+            <span>
+                <input 
+                id="room-visibility" 
+                type="checkbox" 
+                style={{margin : '2rem 1rem 0 0' , display : 'inline'}}
+                onChange={changeRoomVisibility}
+                checked={room.visibility}
+                />
+                Show room to others
+            </span>
         )
     }
 
@@ -151,7 +172,8 @@ const Waiting = (props) => {
                 }  
                 
             </div>
-            { room.admin === user ? startButton : null }
+            {changeRoomVisibilityOption}
+            { startButton }
             {exitButton}
         </Card>
     )
