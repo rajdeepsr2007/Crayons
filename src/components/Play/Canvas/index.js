@@ -29,6 +29,10 @@ const Canvas = (props) => {
         canvasRef.current.redo();
     }
 
+    const onErase = () => {
+        canvasRef.current.eraseMode(true);
+    }
+
     return(
         <div className={classes.canvas} >
             <div className={classes.draw} >
@@ -38,6 +42,7 @@ const Canvas = (props) => {
                 ref={canvasRef}
                 strokeColor={brushColor}
                 strokeWidth={brushWidth}
+                eraserWidth={brushWidth}
                 />
             </div>
             <div className={classes.controls} >
@@ -47,6 +52,7 @@ const Canvas = (props) => {
                 onClearCanvas={onClearCanvas}
                 onUndo={onUndo}
                 onRedo={onRedo}
+                onErase={onErase}
                 />
             </div>
         </div>

@@ -42,6 +42,7 @@ const Controls = (props) => {
             <Button style={buttonStyle} onClick={props.onClearCanvas} >Clear</Button>
             <Button style={buttonStyle} onClick={props.onUndo}>Undo</Button>
             <Button style={buttonStyle} onClick={props.onRedo}>Redo</Button>
+            <Button style={buttonStyle} onClick={props.onErase} ><div className={classes.eraser} ></div></Button>
        </div>
     )
 
