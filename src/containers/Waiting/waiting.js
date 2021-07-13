@@ -76,7 +76,7 @@ const Waiting = (props) => {
     },[roomId])
 
 
-    if( loading ){
+    if( loading || !socket ){
         return (
             <Card>
                 <Loader />
@@ -132,7 +132,6 @@ const Waiting = (props) => {
             </Alert>
         )
         changeRoomVisibility = (event) => {
-            console.log(event.target.value);
             socket.emit(
                 'change-room-visibility',
                 {roomId  : room.roomId , visibility : !room.visibility }
@@ -154,7 +153,7 @@ const Waiting = (props) => {
 
     let content = null;
     if( room.cround > 0 ){
-        content = <Play />
+        content = <Play socket={socket} />
     }else{
         content = (
             <Fragment>

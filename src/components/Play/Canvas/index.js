@@ -1,6 +1,7 @@
-import React , { useState , useRef } from 'react';
+import React , { useState , useRef, useEffect } from 'react';
 import {ReactSketchCanvas} from 'react-sketch-canvas';
 import Controls from './Controls';
+import LZString from 'lz-string';
 import classes from './canvas.module.css';
 
 const Canvas = (props) => {
@@ -8,9 +9,37 @@ const Canvas = (props) => {
     const [brushColor , setBrushColor] = useState('black');
     const [brushWidth , setBrushWidth ] = useState('2');
     const canvasRef = useRef();
+    const {canvasPath , drawing} = props;
+
+    useEffect(() => {
+        if( canvasRef && !drawing ){
+            canvasRef.current.loadPaths(
+                JSON.parse(
+                    LZString.decompress(
+                        canvasPath
+                    )
+                )
+            )
+        }
+    },[canvasPath]);
+
+    const onChange = (canvasPath) => {
+        props.onChange(
+            LZString.compress(
+                JSON.stringify(
+                    canvasPath
+                )
+            )
+        )
+    }
+
+    const resetEraseMode = () => {
+        canvasRef.current.eraseMode(false);
+    }
 
     const onBrushColorChange = (color) => {
         setBrushColor(color);
+        resetEraseMode();
     }
 
     const onBrushWidthChange = (width) => {
@@ -19,14 +48,17 @@ const Canvas = (props) => {
 
     const onClearCanvas = () => {
         canvasRef.current.clearCanvas();
+        resetEraseMode();
     }
 
     const onUndo = () => {
         canvasRef.current.undo();
+        resetEraseMode();
     }
 
     const onRedo = () => {
         canvasRef.current.redo();
+        resetEraseMode();
     }
 
     const onErase = () => {
@@ -43,6 +75,7 @@ const Canvas = (props) => {
                 strokeColor={brushColor}
                 strokeWidth={brushWidth}
                 eraserWidth={brushWidth}
+                onUpdate={onChange}
                 />
             </div>
             <div className={classes.controls} >

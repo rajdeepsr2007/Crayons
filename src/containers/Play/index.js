@@ -1,9 +1,14 @@
 import React from 'react';
-import Canvas from '../../components/Play/Canvas';
+import CanvasDraw from './Canvas';
 
 const Play = (props) => {
-    return( 
-        <Canvas />
+
+    const {socket} = props;
+
+    return(
+        <CanvasDraw 
+        socket={socket}
+        />
     )
 }
 
