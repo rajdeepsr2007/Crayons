@@ -1,0 +1,14 @@
+.message{
+    display: flex;
+    flex-wrap: wrap;
+    padding : 1rem;
+    border : 1px solid green;
+    background: rgb(230, 255, 252);
+    margin : 0.5rem 0.5rem;
+    overflow-wrap: break-word;
+}
+.message .username{
+    margin-right: 1rem;
+    font-weight: bold;
+    color : rgb(74, 189, 74);
+}

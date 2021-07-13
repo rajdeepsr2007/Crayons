@@ -21,3 +21,9 @@ export{
     toggleFriend,
     reset
 } from './user/'
+
+export{
+    addUsersMessages,
+    addUser,
+    addMessage
+} from './room/message/'

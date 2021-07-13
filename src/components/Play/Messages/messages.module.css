@@ -1,0 +1,7 @@
+.messages{
+    height : 35rem;
+    width : 100%;
+    box-sizing: border-box;
+    margin : 1rem 0;
+    overflow-y: scroll;
+}
