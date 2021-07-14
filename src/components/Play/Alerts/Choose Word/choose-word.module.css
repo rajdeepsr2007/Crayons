@@ -1,0 +1,18 @@
+.options{
+    display: flex;
+    justify-content: space-around;
+    width : 100%;
+    margin : 0 2rem;
+}
+.options .option{
+    padding : 1rem 2rem;
+    border: 2px solid black;
+    font-weight: bolder;
+    border-radius: 20px;
+    background: white;
+    cursor: pointer;
+}
+.options .option:hover{
+    background: linear-gradient(blue , green);
+    color  :white
+}

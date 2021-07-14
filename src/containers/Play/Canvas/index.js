@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 const CanvasDraw = (props) => {
 
     const {socket , room , user } = props;
-    const drawing = room.admin === user;
+    const drawing = room.turn === user;
     const [socketTimeout , setSockettimeout] = useState(null);
 
     const onChange = (canvasPath) => {

@@ -18,3 +18,7 @@
     font-weight: bold;
     color : rgb(74, 189, 74);
 }
+
+.message .info{
+    color: rgb(74, 189, 74) ;
+}

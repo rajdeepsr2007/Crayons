@@ -1,4 +1,5 @@
-import React , { Fragment } from 'react';
+import React  from 'react';
+import Alerts from './Alerts';
 import CanvasDraw from './Canvas';
 import Messages from './Message';
 import classes from './play.module.css';
@@ -13,9 +14,12 @@ const Play = (props) => {
             socket={socket}
             />
             <Messages />
+            <Alerts
+            socket={socket}
+            />
         </div>
         
     )
 }
 
-export default Play;
+export default (Play);
