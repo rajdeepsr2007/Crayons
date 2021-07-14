@@ -9,7 +9,7 @@ const Canvas = (props) => {
     const [brushColor , setBrushColor] = useState('black');
     const [brushWidth , setBrushWidth ] = useState('2');
     const canvasRef = useRef();
-    const {canvasPath , drawing , disabled , turn} = props;
+    const {canvasPath , drawing , disabled } = props;
 
     useEffect(() => {
         if( canvasRef && !drawing ){
@@ -22,10 +22,6 @@ const Canvas = (props) => {
             )
         }
     },[canvasPath]);
-
-    useEffect(() => {
-        onClearCanvas();
-    },[turn])
 
     const onChange = (canvasPath) => {
         props.onChange(

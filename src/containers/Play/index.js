@@ -18,7 +18,7 @@ const Play = (props) => {
         })
         return () => {
             socket.off('timer-update');
-            socket
+            socket.emit('socket-disconnect');
         }
     },[])
 
