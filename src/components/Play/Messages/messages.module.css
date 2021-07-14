@@ -1,7 +1,9 @@
 .messages{
     height : 35rem;
-    width : 100%;
+    width : 20rem;
     box-sizing: border-box;
     margin : 1rem 0;
     overflow-y: scroll;
+    display: flex;
+    flex-flow: column;
 }
