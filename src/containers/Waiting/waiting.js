@@ -64,7 +64,6 @@ const Waiting = (props) => {
                     user
                 })
                 socket.on('room-update' , data => {
-                    console.log(data);
                     onUpdateRoom(data);
                 })
                 socket.on('socket-disconnect' , () => {

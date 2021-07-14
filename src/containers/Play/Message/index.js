@@ -56,11 +56,13 @@ const Message = (props) => {
     },[])
 
     const sendMessage = () => {
-        socket.emit('new-message',{
-            roomId : room.roomId,
-            userId : user,
-            text : controls.message.value
-        })
+        if( controls.message.value !== '' && room.turn !== user ){
+            socket.emit('new-message',{
+                roomId : room.roomId,
+                userId : user,
+                text : controls.message.value
+            })
+        }
     }
 
     const onChange = (control , event) => {
@@ -74,12 +76,13 @@ const Message = (props) => {
              <CustomInputs
             controls={controls}
             onChange={onChange}
+            disabled={room.turn===user}
             />
             <Button 
-            style={{ margin : '0 0 0.5rem 0' , width : '5rem' , padding : '0' , height : '1.5rem' }}
+            style={{ margin : '0 0 0.5rem 2rem' , width : '3rem' , padding : '0.5rem' , height : '2.5rem' , borderRadius : '50%' }}
             onClick={sendMessage}
             >
-                Send
+                {'>'}
             </Button>
         </div>
     )

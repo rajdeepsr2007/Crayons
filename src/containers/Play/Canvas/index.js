@@ -27,7 +27,9 @@ const CanvasDraw = (props) => {
         <Canvas 
         onChange={onChange}
         canvasPath={room.canvasPath}
+        disabled={room.turn!==user}
         drawing={drawing}
+        turn={room.turn}
         />
     )
 }

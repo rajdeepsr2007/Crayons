@@ -18,3 +18,10 @@ export const formatDate = (date) => {
         return `${Math.floor(timeDifference/3600000*24*30*12)}yr`
     }
 }
+
+export const formatTimer = (timer) => {
+    const min = Math.floor(timer/60);
+    let sec = timer%60;
+    sec = sec < 10 ? '0' + sec : sec ;
+    return `0${min} : ${sec}`;
+}

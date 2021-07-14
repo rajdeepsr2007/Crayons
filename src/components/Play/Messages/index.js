@@ -11,7 +11,7 @@ const Messages = (props) => {
                 messages.map(message => {
                     const { color , username } = users[message.userId];
                     return <Message
-                            key={message}
+                            key={Math.random() * 10000}
                             message={message}
                             color={color}
                             username={username}

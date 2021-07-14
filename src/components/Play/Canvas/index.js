@@ -9,7 +9,7 @@ const Canvas = (props) => {
     const [brushColor , setBrushColor] = useState('black');
     const [brushWidth , setBrushWidth ] = useState('2');
     const canvasRef = useRef();
-    const {canvasPath , drawing} = props;
+    const {canvasPath , drawing , disabled , turn} = props;
 
     useEffect(() => {
         if( canvasRef && !drawing ){
@@ -22,6 +22,10 @@ const Canvas = (props) => {
             )
         }
     },[canvasPath]);
+
+    useEffect(() => {
+        onClearCanvas();
+    },[turn])
 
     const onChange = (canvasPath) => {
         props.onChange(
@@ -78,16 +82,18 @@ const Canvas = (props) => {
                 onUpdate={onChange}
                 />
             </div>
-            <div className={classes.controls} >
-                <Controls 
-                onBrushColorChange={onBrushColorChange}
-                onBrushWidthChange={onBrushWidthChange}
-                onClearCanvas={onClearCanvas}
-                onUndo={onUndo}
-                onRedo={onRedo}
-                onErase={onErase}
-                />
-            </div>
+            {
+                !disabled ?  <div className={classes.controls} >
+                                <Controls 
+                                onBrushColorChange={onBrushColorChange}
+                                onBrushWidthChange={onBrushWidthChange}
+                                onClearCanvas={onClearCanvas}
+                                onUndo={onUndo}
+                                onRedo={onRedo}
+                                onErase={onErase}
+                                />
+                            </div> : null
+            }
         </div>
     )
 }

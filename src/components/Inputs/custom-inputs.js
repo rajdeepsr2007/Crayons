@@ -5,6 +5,7 @@ import classes from './custom-input.module.css';
 const CustomInputs = (props) => {
 
     const inputs = [];
+    const { disabled } = props;
     for( const control in props.controls ){
 
         if( props.controls[control].type === 'text' 
@@ -31,6 +32,7 @@ const CustomInputs = (props) => {
                     max={props.controls[control].max}
                     min={props.controls[control].min}
                     step={props.controls[control].step}
+                    disabled={disabled}
                     />
                     {
                         props.showErrors ? 
