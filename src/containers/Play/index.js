@@ -10,11 +10,14 @@ import classes from './play.module.css';
 const Play = (props) => {
 
     const [timer , setTimer] = useState(0);
+    const [hint , setHint] = useState('_');
     const {socket , cround , rounds} = props;
 
     useEffect(() => {
         socket.on('timer-update',(data) => {
+            console.log(data);
             setTimer(data.timer);
+            setHint(data.hint);
         })
         return () => {
             socket.off('timer-update');
@@ -28,6 +31,7 @@ const Play = (props) => {
             cround={cround}
             rounds={rounds}
             timer={timer}
+            hint={hint}
             />
             <div className={ classes.play } >
                 <CanvasDraw 

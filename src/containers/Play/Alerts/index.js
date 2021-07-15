@@ -41,7 +41,7 @@ const Alerts = (props) => {
             setAlert(alertObject);
             setShowAlert(true);
         }
-    },[turn , user])
+    },[turn , user , wordOptions])
 
     useEffect(() => {
         if( turn !== user && drawing ){
