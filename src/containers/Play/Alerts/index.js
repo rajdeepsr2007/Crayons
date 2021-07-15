@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import {connect} from 'react-redux';
 import TextAlert from '../../../components/Play/Alerts/Text Alert';
 import ChooseWord from '../../../components/Play/Alerts/Choose Word/choose-word';
+import ShowScores from '../../../components/Play/Alerts/Show Scores';
 
 const Alerts = (props) => {
     const [showAlert , setShowAlert] = useState(false);
     const [alert , setAlert] = useState(null);
-    const { turn , cround , wordOptions  , user , socket , roomId , drawing , users} = props;
+    const { turn , cround , wordOptions  , user , socket , roomId , drawing , users , scores} = props;
 
     const onSelectWord = (word) => {
         socket.emit('select-word',{
@@ -15,6 +16,27 @@ const Alerts = (props) => {
         })
         setShowAlert(false);
     }
+
+    useEffect(() => {
+        socket.on('show-scores',(data) => {
+            const alertObject = (
+                <ShowScores 
+                scores={scores}
+                users={users}
+                word={data.word}
+                />
+            );
+            setAlert(alertObject);
+            setShowAlert(true);
+            setTimeout(() => {
+                setShowAlert(false);
+            },2000);
+        })
+
+        return () => {
+            socket.off('show-scores');
+        }
+    },[])
 
     useEffect(() => {
         const alertText = `Round ${cround}`;
@@ -74,7 +96,8 @@ const mapStateToProps = state => {
         wordOptions : state.waiting.room.wordOptions,
         user : state.auth.user,
         roomId : state.waiting.room.roomId ,
-        drawing : state.waiting.room.drawing
+        drawing : state.waiting.room.drawing,
+        scores : state.waiting.room.scores
     }
 }
 

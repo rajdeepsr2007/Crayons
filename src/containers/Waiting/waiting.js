@@ -31,7 +31,12 @@ const Waiting = (props) => {
                 props.match.params.roomId
             )
         }
-        return () => reset()
+        return () => {
+            reset();
+            if(socket){
+                socket.off('room-update');
+            }
+        }
     },[])
 
     const exitButton = (
@@ -40,6 +45,7 @@ const Waiting = (props) => {
         onClick={
             () => {
                 if(socket){
+                    socket.off('room-update');
                     socket.emit('socket-disconnect')
                 }
                 userSocket.emit('leave-rooms');

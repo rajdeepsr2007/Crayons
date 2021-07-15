@@ -17,7 +17,6 @@ const ShowScores = (props) => {
         let scoreClass = [classes.score];
         let username = usernames[userId];
         let score = scores[userId].question;
-        console.log( score );
         if( score > 0 ){
             score = '+' + score;
             scoreClass.push(classes.green);
@@ -36,7 +35,7 @@ const ShowScores = (props) => {
 
     const scoreCard = (
         <Card style={{ justifyContent : 'flex-start' }} >
-            <h1 className={classes.word} >Word</h1>
+            <h1 className={classes.word} >{word}</h1>
             {scoreObjects}
         </Card>
     )
