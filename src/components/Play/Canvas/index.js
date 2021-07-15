@@ -9,7 +9,16 @@ const Canvas = (props) => {
     const [brushColor , setBrushColor] = useState('black');
     const [brushWidth , setBrushWidth ] = useState('2');
     const canvasRef = useRef();
-    const {canvasPath , drawing , disabled } = props;
+    const {canvasPath , drawing , disabled , turn } = props;
+
+    const onErase = () => {
+        canvasRef.current.eraseMode(true);
+    }
+
+    useEffect(() => {
+        onClearCanvas();
+        onErase();
+    },[turn])
 
     useEffect(() => {
         if( canvasRef && !drawing ){
@@ -32,6 +41,8 @@ const Canvas = (props) => {
             )
         )
     }
+
+    
 
     const resetEraseMode = () => {
         canvasRef.current.eraseMode(false);
@@ -61,9 +72,7 @@ const Canvas = (props) => {
         resetEraseMode();
     }
 
-    const onErase = () => {
-        canvasRef.current.eraseMode(true);
-    }
+    
 
     return(
         <div className={classes.canvas} >
