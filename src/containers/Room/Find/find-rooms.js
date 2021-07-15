@@ -24,6 +24,9 @@ const FindRooms = (props) => {
 
     useEffect(() => {
         return () => {
+            if( socket ){
+                socket.off('room-update')
+            }
             reset();
         }
     },[])

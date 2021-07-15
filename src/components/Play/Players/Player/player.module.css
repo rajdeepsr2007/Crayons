@@ -3,13 +3,27 @@
     justify-content: flex-start;
     align-items: center;
     width: 100%;
-    margin : 0.5rem 0;
+    margin : 1rem 0 0 0;
+    background: rgb(237, 247, 237);
 }
 .player .username{
     color : rgb(103, 156, 216);
     font-weight: bolder;
-    margin : 0.5rem 0;
+}
+.player span{
+    margin : 0 0.5rem;
+    width: 2.8rem;
+    text-align: center;
+    font-size: 0.9rem;
+}
+.player .score{
+    font-weight: bolder;
+    color: green;
 }
 .player .pencil{
-    transform: scale(0.8);
+    transform: scale(0.5);
+}
+.player.guessed{
+    border: 1px solid green;
+    background: rgb(250, 250, 162);
 }

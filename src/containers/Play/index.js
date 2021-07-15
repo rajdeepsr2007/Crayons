@@ -34,10 +34,7 @@ const Play = (props) => {
             hint={hint}
             />
             <div className={ classes.play } >
-                <Users 
-                users={users}
-                turn={turn}
-                />
+                <Users />
                 <CanvasDraw 
                 socket={socket}
                 />
@@ -54,8 +51,6 @@ const mapStateToProps = state => {
     return{
         cround : state.waiting.room.cround ,
         rounds : state.waiting.room.rounds ,
-        users : state.waiting.room.users,
-        turn :  state.waiting.room.turn, 
     }
 }
 

@@ -49,6 +49,9 @@ const Message = (props) => {
 
         return () => {
             if( socket ){
+                socket.off('users-messages-update');
+                socket.off('users-update');
+                socket.off('messages-update');
                 socket.emit('socket-disconnect');
             }
         }
