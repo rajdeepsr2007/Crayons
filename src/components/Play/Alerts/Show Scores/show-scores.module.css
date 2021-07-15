@@ -1,0 +1,15 @@
+.score{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    font-weight: bolder;
+    color: black;
+    margin : 0.5rem 0;
+}
+.green span{
+    color : green;
+}
+
+.word{
+    color : rgb(30, 104, 58);
+}
