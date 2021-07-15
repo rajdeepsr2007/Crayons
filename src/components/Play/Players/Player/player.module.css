@@ -1,0 +1,15 @@
+.player{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    margin : 0.5rem 0;
+}
+.player .username{
+    color : rgb(103, 156, 216);
+    font-weight: bolder;
+    margin : 0.5rem 0;
+}
+.player .pencil{
+    transform: scale(0.8);
+}

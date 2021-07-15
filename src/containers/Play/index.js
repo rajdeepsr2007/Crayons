@@ -6,16 +6,16 @@ import CanvasDraw from './Canvas';
 import Messages from './Message';
 import {connect} from 'react-redux';
 import classes from './play.module.css';
+import Users from './Users';
 
 const Play = (props) => {
 
     const [timer , setTimer] = useState(0);
     const [hint , setHint] = useState('_');
-    const {socket , cround , rounds} = props;
+    const {socket , cround , rounds , users  , turn} = props;
 
     useEffect(() => {
         socket.on('timer-update',(data) => {
-            console.log(data);
             setTimer(data.timer);
             setHint(data.hint);
         })
@@ -34,6 +34,10 @@ const Play = (props) => {
             hint={hint}
             />
             <div className={ classes.play } >
+                <Users 
+                users={users}
+                turn={turn}
+                />
                 <CanvasDraw 
                 socket={socket}
                 />
@@ -49,7 +53,9 @@ const Play = (props) => {
 const mapStateToProps = state => {
     return{
         cround : state.waiting.room.cround ,
-        rounds : state.waiting.room.rounds
+        rounds : state.waiting.room.rounds ,
+        users : state.waiting.room.users,
+        turn :  state.waiting.room.turn, 
     }
 }
 

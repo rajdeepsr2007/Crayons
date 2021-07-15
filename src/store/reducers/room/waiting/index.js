@@ -22,7 +22,8 @@ const reducer = (state=initialState , action) => {
                 ...state,
                 room : {
                     ...state.room ,
-                    ...action.data.room
+                    ...action.data.room ,
+                    drawing : action.data.room.drawing ? true : false
                 }
             }
 
