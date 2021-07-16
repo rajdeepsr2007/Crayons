@@ -1,0 +1,14 @@
+.user{
+    display: flex;
+    flex-flow: column;
+    margin : 1rem;
+}
+.user span{
+    color : green;
+    font-weight: bolder;
+    text-align: center;
+    font-size: 1.2rem;
+}
+.user .label{
+    color: white;
+}

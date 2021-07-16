@@ -25,3 +25,17 @@ export const formatTimer = (timer) => {
     sec = sec < 10 ? '0' + sec : sec ;
     return `0${min} : ${sec}`;
 }
+
+export const rankUsers = (users , scores) => {
+    users.sort(( a , b ) => {
+        return scores[b._id].overall - scores[a._id].overall
+    });
+    users[0].label = 1;
+    for( let i = 1  ; i < users.length ; i++){
+        if( scores[users[i]._id].overall === scores[users[i - 1]._id].overall )
+            users[i].label = users[i-1].label;
+        else
+            users[i].label = users[i-1].label + 1;
+    }
+    return users;
+}

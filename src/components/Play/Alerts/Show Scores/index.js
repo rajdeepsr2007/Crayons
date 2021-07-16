@@ -1,5 +1,6 @@
 import React from 'react';
 import { Fragment } from 'react';
+import Avatar from '../../../Avatar/avatar';
 import Card from '../../../UI/Card/card';
 import Alert from '../Alert';
 import classes from './show-scores.module.css';
@@ -7,15 +8,16 @@ import classes from './show-scores.module.css';
 const ShowScores = (props) => {
 
     const {scores , users , word} = props;
-    const usernames = {};
+    const userObjects = {};
     for( const user of users ){
-        usernames[user._id] = user.username;
+        userObjects[user._id] = user;
     }
 
     const scoreObjects = [];
     for( const userId in scores ){
+        const user = userObjects[userId];
+        const username = user.username;
         let scoreClass = [classes.score];
-        let username = usernames[userId];
         let score = scores[userId].question;
         if( score > 0 ){
             score = '+' + score;
@@ -24,6 +26,7 @@ const ShowScores = (props) => {
         const scoreObject = (
             <Fragment>
                 <h2 className={scoreClass.join(' ')} >
+                    <Avatar user={user} style={{ width : 'auto' , transform : 'scale(0.9)' }}  />
                     <span>{username}</span>
                     <span>{score}</span>
                 </h2>

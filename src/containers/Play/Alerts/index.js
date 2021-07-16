@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import TextAlert from '../../../components/Play/Alerts/Text Alert';
 import ChooseWord from '../../../components/Play/Alerts/Choose Word/choose-word';
 import ShowScores from '../../../components/Play/Alerts/Show Scores';
+import ShowResults from '../../../components/Play/Alerts/Show Results/show-results';
+import { withRouter } from 'react-router';
 
 const Alerts = (props) => {
     const [showAlert , setShowAlert] = useState(false);
@@ -31,6 +33,20 @@ const Alerts = (props) => {
             setTimeout(() => {
                 setShowAlert(false);
             },2000);
+        })
+
+        socket.on('game-end' , () => {
+            const alertObject = (
+                <ShowResults
+                users={users}
+                scores={scores}
+                />
+            );
+            setAlert(alertObject);
+            setShowAlert(true);
+            setTimeout(() => {
+                props.history.replace('/find-rooms');
+            },5000)
         })
 
         return () => {
@@ -101,4 +117,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(Alerts);
+export default connect(mapStateToProps)(withRouter(Alerts));
