@@ -17,6 +17,7 @@ const Player = (props) => {
                 width : 'auto',
                 margin : '0 1rem 0 0'
             }}
+            user={user}
             />
             <span className={classes.username} >{user.username}</span>
             <span className={classes.score} >{score}</span>

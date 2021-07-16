@@ -25,7 +25,7 @@ const User = (props) => {
     const buttonOnClick = disabled ? () => {} : onClick
     const userCard = (
         <div className={classes.user} >
-            <Avatar style={avatarStyle}/>
+            <Avatar style={avatarStyle} user={user} />
             <span className={classes.username} >{user.username}</span>
             {lastSeen}
             <Button 

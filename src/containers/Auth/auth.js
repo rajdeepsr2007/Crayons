@@ -92,7 +92,6 @@ const Auth = (props) => {
            <Logo />
            {Inputs}
            {alert}
-           <Avatar />
            {joinButton}
        </Card>
     )

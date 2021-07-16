@@ -43,7 +43,7 @@ const User = (props) => {
 
     const userCard = (
         <div className={classes.user}>
-            <Avatar />
+            <Avatar user={user} />
             <span className={classes.label}>
                 { user.username }
             </span>

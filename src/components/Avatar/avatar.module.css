@@ -8,6 +8,7 @@
     justify-content: center;
     align-items: center;
     margin-bottom: 0.5rem;
+    position: relative;
 }
 
 .avatar .face{
@@ -21,4 +22,9 @@
     height: 2rem;
     border: 1px solid rgb(106, 199, 106);
     border-radius: 15px 15px 0 0;
+}
+.avatar .icons{
+    position: absolute;
+    top : -1rem;
+    transform: scale(0.5);
 }

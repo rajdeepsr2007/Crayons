@@ -21,7 +21,7 @@ const Alerts = (props) => {
         socket.on('show-scores',(data) => {
             const alertObject = (
                 <ShowScores 
-                scores={scores}
+                scores={data.scores}
                 users={users}
                 word={data.word}
                 />
