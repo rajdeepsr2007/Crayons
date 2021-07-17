@@ -7,12 +7,13 @@ import Rooms from '../../../components/Rooms/rooms';
 import socketIOClient from 'socket.io-client';
 import Loader from '../../../components/UI/Loader/loader-big';
 import Alert from '../../../components/Feedback/Alert/alert';
+import baseURL from '../../../baseURL';
 
 
 const FindRooms = (props) => {
 
     const {rooms , onFindRooms , user , onUpdateRoom , reset} = props;
-    const [endpoint] = useState('http://localhost:9000');
+    const [endpoint] = useState(baseURL + ':9000');
     const [socket,setSocket] = useState(null);
 
     useEffect(() => {
@@ -25,7 +26,8 @@ const FindRooms = (props) => {
     useEffect(() => {
         return () => {
             if( socket ){
-                socket.off('room-update')
+                socket.off('room-update');
+                socket.emit('socket-disconnect');
             }
             reset();
         }

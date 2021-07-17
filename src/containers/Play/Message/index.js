@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import Loader from '../../../components/UI/Loader/loader-big';
 import Messages from '../../../components/Play/Messages';
 import * as actions from '../../../store/actions/index';
+import baseURL from '../../../baseURL';
 
 const Message = (props) => {
 
@@ -26,7 +27,7 @@ const Message = (props) => {
     useEffect(() => {
 
         const socket = socketIOClient(
-            'http://localhost:2000'
+            baseURL + ':2000'
         )
 
         socket.on('connected' , () => {

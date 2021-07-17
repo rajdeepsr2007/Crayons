@@ -13,13 +13,14 @@ import OtherUsers from './Users/users';
 import Alert from '../../components/Feedback/Alert/alert';
 import Play from '../Play/';
 import classes from './waiting.module.css';
+import baseURL from '../../baseURL';
 
 const Waiting = (props) => {
 
     const [roomId , setRoomId] = useState(null);
     const {onLoadRoom , loading , error, user , onUpdateRoom , room , reset} = props;
     const [socket , setSocket] = useState(null);
-    const endpoint = 'http://localhost:9000'
+    const endpoint = baseURL + ':9000';
     const userSocket = props.usersSocket;
 
     useEffect(() => {

@@ -10,6 +10,7 @@ import {connect} from 'react-redux';
 import * as actions from './store/actions/';
 import socketIOClient from "socket.io-client";
 import Loader from "./components/UI/Loader/loader-big";
+import baseURL from "./baseURL";
 
 function App(props) {
 
@@ -20,7 +21,7 @@ function App(props) {
     useEffect(() => {
       if( !user ){
         const socket = socketIOClient(
-          'http://localhost:5000'
+          baseURL + ':5000'
         )
         setSocket(socket);
         onAutoLogin();
