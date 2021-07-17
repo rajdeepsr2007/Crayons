@@ -1,14 +1,24 @@
 import React from 'react';
 import Avatar from '../../../Avatar/avatar';
 import PencilIcon from '../../../../assets/pencil.png';
+import RemoveIcon from '../../../../assets/remove.png';
 import classes from './player.module.css';
 
 const Player = (props) => {
-    const {user , turn , score , qscore} = props;
+    const {user , turn , score , qscore , iadmin , removeUser} = props;
     const playerClass = [classes.player];
     if( qscore  > 0 ){
         playerClass.push(classes.guessed);
     }
+    let removeUserButton = null;
+    if( iadmin)
+    removeUserButton = (
+           <img 
+           src={RemoveIcon} 
+           className={classes.remove}
+           onClick={() => removeUser(user._id)}
+           />
+    )
     const playerCard = (
         <div className={playerClass.join(' ')} >
             <Avatar 
@@ -29,6 +39,7 @@ const Player = (props) => {
                 />
                 : null
             }
+            {removeUserButton}
         </div>
     )
     return(

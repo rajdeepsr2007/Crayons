@@ -34,7 +34,9 @@ const Play = (props) => {
             hint={hint}
             />
             <div className={ classes.play } >
-                <Users />
+                <Users 
+                socket={socket}
+                />
                 <CanvasDraw 
                 socket={socket}
                 />
