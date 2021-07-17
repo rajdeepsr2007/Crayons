@@ -9,6 +9,7 @@
 .player .username{
     color : rgb(103, 156, 216);
     font-weight: bolder;
+    overflow: hidden;
 }
 .player span{
     margin : 0 0.5rem;

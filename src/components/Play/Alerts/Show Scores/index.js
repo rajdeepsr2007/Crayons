@@ -9,6 +9,7 @@ const ShowScores = (props) => {
 
     const {scores , users , word} = props;
     const userObjects = {};
+    console.log(users  , scores);
     for( const user of users ){
         userObjects[user._id] = user;
     }

@@ -32,7 +32,7 @@ const Alerts = (props) => {
             setShowAlert(true);
             setTimeout(() => {
                 setShowAlert(false);
-            },2000);
+            },3000);
         })
 
         socket.on('game-end' , () => {
@@ -46,7 +46,7 @@ const Alerts = (props) => {
             setShowAlert(true);
             setTimeout(() => {
                 props.history.replace('/find-rooms');
-            },5000)
+            },7000)
         })
 
         return () => {
@@ -94,7 +94,7 @@ const Alerts = (props) => {
             setShowAlert(true);
             setTimeout(() => {
                 setShowAlert(false);
-            },2000);
+            },3000);
         }
     },[drawing])
 

@@ -17,9 +17,10 @@ const User = (props) => {
     let lastSeen = null;
     if( user.lastSeen === 'online' ){
         lastSeen = <div><div className={classes.online}></div> online</div>
+    }else if(user.lastSeen ==='In a game') {
+        lastSeen = <div className={classes.last_seen} >In a game</div>
     }else{
         lastSeen = <span className={classes.last_seen} >{formatDate(user.lastSeen)}</span>
-
     }
     let disabled = invite ? user.lastSeen === 'online' ? false : true : false;
     const buttonOnClick = disabled ? () => {} : onClick

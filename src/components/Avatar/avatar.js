@@ -5,7 +5,9 @@ import classes from './avatar.module.css';
 
 const Avatar = (props) => {
     const {style , user} = props;
-    const background = user.avatar ? user.avatar[2] : null;
+    const background = user.avatar ? user.avatar[2] : 'green';
+    const eyeIcon = user.avatar ? user.avatar[0] : JSON.stringify(Math.ceil(Math.random()*5));
+    const mouthIcon = user.avatar ? user.avatar[0] : JSON.stringify(Math.ceil(Math.random()*5));
     const avatar=(
         <div className={classes.avatar} style={style} >
             <div 
@@ -16,8 +18,8 @@ const Avatar = (props) => {
             className={classes.body} 
             style={{ background }}  >
             </div>
-            <img src={EyeIcon(user.avatar[0])}  className={classes.icons} />
-            <img src={MouthIcon(user.avatar[1])} className={classes.icons} />
+            <img src={EyeIcon(eyeIcon)}  className={classes.icons} />
+            <img src={MouthIcon(mouthIcon)} className={classes.icons} />
         </div>
     )
 
