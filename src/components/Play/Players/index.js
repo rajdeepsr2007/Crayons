@@ -11,6 +11,7 @@ const Players = (props) => {
     const playerObjects = users.map(user => {
         return (
             <Player
+            key={user._id}
             user={user}
             turn={turn===user._id}
             score={scores[user._id].overall}

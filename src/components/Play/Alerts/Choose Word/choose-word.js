@@ -9,6 +9,7 @@ const ChooseWord = (props) => {
     const optionObjects = options.map(option => {
         return(
             <div 
+            key={option}
             onClick={() => onClick(option)}
             className={classes.option} >
                 {option}

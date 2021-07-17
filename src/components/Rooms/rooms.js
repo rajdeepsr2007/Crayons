@@ -9,7 +9,7 @@ const Rooms = (props) => {
 
     const titles = ['RoomId' , 'Users' , 'Rounds' , 'Draw Time' , 'Status'];
     const titleObjects = titles.map( title => {
-        return <span className={classes.title} >
+        return <span key={title} className={classes.title} >
             {title}
         </span>
     } )

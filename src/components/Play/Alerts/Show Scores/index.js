@@ -26,7 +26,7 @@ const ShowScores = (props) => {
         }
         const scoreObject = (
             <Fragment>
-                <h2 className={scoreClass.join(' ')} >
+                <h2 key={user._id} className={scoreClass.join(' ')} >
                     <Avatar user={user} style={{ width : 'auto' , transform : 'scale(0.9)' }}  />
                     <span>{username}</span>
                     <span>{score}</span>

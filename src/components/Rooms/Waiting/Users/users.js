@@ -11,6 +11,7 @@ const Users = (props) => {
     const userObjects = users.map( user => {
         return(
             <User
+            key={user._id}
             admin={admin}
             user={user}
             iadmin={iuser === admin}
