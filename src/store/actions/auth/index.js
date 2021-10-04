@@ -24,7 +24,7 @@ const authUserFailed = (error) => {
 
 export const authUser = (username , password) => {
     return dispatch => {
-        dispatch(authUserStart);
+        dispatch(authUserStart());
         axiosInstance.post('/api/auth', { username , password })
         .then( response => {
             if( response ){

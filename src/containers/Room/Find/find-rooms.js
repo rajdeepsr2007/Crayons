@@ -68,12 +68,13 @@ const FindRooms = (props) => {
                         'socket-disconnect'
                     )
                 }
-                props.history.push('/menu')
+                props.history.replace('/menu')
             }
         }
         style={{
             transform : 'scale(0.9)',
-            margin : '1rem 0 1rem 0'
+            margin : '1rem 0 1rem 0',
+            width : '110%'
         }}>
             {'< Back'}
         </Button>
