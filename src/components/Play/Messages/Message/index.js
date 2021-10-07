@@ -30,9 +30,13 @@ const Message = (props) => {
         )
     }
 
+    const messageClasses = [classes.message];
+    if( message.type && message.type !== 'drawing' )
+        messageClasses.push(classes.yellow)
+
     const messageObject = (
         <div 
-        className={classes.message} >
+        className={messageClasses.join(' ')} >
             {content}
         </div>
     )

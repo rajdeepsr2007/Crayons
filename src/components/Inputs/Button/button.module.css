@@ -1,5 +1,4 @@
 .button{
-    border: 1px solid green;
     width: 100%;
     margin: 2rem 0;
     text-align: center;
@@ -13,10 +12,27 @@
     box-sizing: border-box;
 }
 .button:hover{
-    background: linear-gradient(rgb(75, 153, 75) , rgb(124, 166, 201)) ;
+    background: radial-gradient(yellow , orange) ;
 }
 .button.disabled{
     background: rgb(231, 227, 227);
     border: rgb(231, 227, 227);
     color : grey
+}
+
+.button.blue{
+    background: linear-gradient(rgb(71, 173, 204) , rgb(142, 187, 224));
+    border: 0px solid white;
+}
+
+.button.green{
+    background: linear-gradient(rgb(39, 170, 89) , rgb(115, 211, 139));
+}
+
+.button.green:hover{
+    background: radial-gradient(rgb(147, 221, 147) , rgb(77, 230, 77));
+}
+
+.button.blue:hover{
+    background: radial-gradient(rgb(165, 224, 233) , rgb(52, 152, 192));
 }

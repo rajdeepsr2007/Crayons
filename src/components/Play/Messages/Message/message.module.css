@@ -2,7 +2,6 @@
     display: inline-block;
     word-break: break-all;
     padding : 1rem;
-    border : 1px solid green;
     background: rgb(230, 255, 252);
     margin : 0.5rem 0.5rem;
     font-family: sans-serif;
@@ -21,4 +20,13 @@
 
 .message .info{
     color: rgb(74, 189, 74) ;
+}
+
+.message.yellow{
+    background: rgb(255, 255, 153);
+}
+
+.message.yellow .info{
+    color : orange;
+    
 }

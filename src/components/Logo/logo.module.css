@@ -1,10 +1,72 @@
+@keyframes bounce{
+    from{
+        transform: translateY(-5px);
+    }
+    10%{
+        transform: translateY(0px);
+    }
+    20%{
+        transform: translateY(-4px);
+    }
+    30%{
+        transform: translateY(0px);
+    }
+    40%{
+        transform: translateY(-3px);
+    }
+    50%{
+        transform: translateY(0);
+    }
+    60%{
+        transform: translateY(-2px);
+    }
+    70%{
+        transform: translateY(0px);
+    }
+    80%{
+        transform: translateY(-1px);
+    }
+    to{
+        transform: translateY(0px);
+    }
+}
+
 .logo{
     width: 100%;
     height: 3rem;
-    margin: 1rem 0;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top : 0;
+    padding : 1rem 0 0 0;
+    overflow: hidden;
 }
 .logo img{
     height: inherit;
     width: 15rem;
+}
+
+@keyframes roll{
+    from{
+        transform: scaleX(0);
+    }
+    20%{
+        transform: scaleX(100) scaleY(10) ;
+        margin : 0.5rem 0;
+        opacity: 80%;
+    }
+    80%{
+        transform: scaleX(1);
+    }
+}
+
+.logo div{
+    font-size: 2rem;
+    font-family: cursive;
+    color: rgb(162, 223, 223);
+}
+
+.roll{
+    animation: roll 8s 1 ease-in-out ;
 }

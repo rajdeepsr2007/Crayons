@@ -1,10 +1,15 @@
-import React from 'react';
+import React , {Fragment} from 'react';
 import classes from './loader-big.module.css';
 
 const Loader = () => {
     return(
-        <div className={classes.loader} >
-        </div>
+        <Fragment>
+            <div className={classes.loader} >
+            </div>
+            <div className={classes.top} >
+            </div>
+        </Fragment>
+        
     )
 }
 

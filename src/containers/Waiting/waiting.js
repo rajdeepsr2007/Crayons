@@ -126,15 +126,15 @@ const Waiting = (props) => {
             <Button 
             style={{ 
                 margin : '3rem 0 0 0' ,
-                background  : 'rgb(73, 231, 73)'
             }} 
+            color='green'
             onClick={startGame}
             >
                 Start
             </Button>
         )
         roomIdAlert = (
-            <Alert type="success">
+            <Alert type="success" style={{ width : '96%' }} hide >
                 Share RoomId <strong>{room.roomId}</strong> to join
             </Alert>
         )

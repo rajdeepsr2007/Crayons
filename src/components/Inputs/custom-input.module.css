@@ -7,13 +7,16 @@
     box-sizing: border-box;
     color: rgb(86, 180, 114);
     border: 0px solid white;
-    outline: 1px solid rgb(117, 189, 139);
+    border-bottom: 1px solid green;
     font-weight: bolder;
     font-size: 1.05rem;
+    transition: 0.2s;
 }
 .input:focus{
-    border: 3px solid rgb(89, 196, 125);
+    border: 0px solid white;
     outline: 0;
+    border-bottom: 2px solid orange;
+    transition: 0.2s;
 }
 h3{
     color :rgb(86, 180, 114);

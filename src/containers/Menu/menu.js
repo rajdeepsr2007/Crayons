@@ -38,8 +38,8 @@ const Menu = (props) => {
         }
         style={{
             ...buttonStyle,
-            background : 'yellow',
-        }}>
+        }}
+        >
             Play
         </Button>
     )
@@ -48,8 +48,9 @@ const Menu = (props) => {
         onClick={() => navigate('/create-room')}
         style={{
             ...buttonStyle,
-            background : 'orange'
-        }}>
+        }}
+        color='blue'
+        >
             Create Custom Room
         </Button>
     )
@@ -67,9 +68,9 @@ const Menu = (props) => {
         <Fragment>
             <Button style={{
             ...buttonStyle,
-            background : 'green'
             }}
             onClick={onJoinRoomHandler}
+            color='green'
             >
                 Join Room
             </Button>

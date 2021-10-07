@@ -1,6 +1,5 @@
 .info{
     width : 96%;
-    border: 1px solid grey;
     background : linear-gradient(yellow , orange);
     height: 3rem;
     box-sizing: border-box;
@@ -8,7 +7,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    border-radius: 20px;
+    border-radius: 10px;
 }
 .info span{
     color : white;

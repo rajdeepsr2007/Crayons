@@ -8,6 +8,7 @@ import socketIOClient from 'socket.io-client';
 import Loader from '../../../components/UI/Loader/loader-big';
 import Alert from '../../../components/Feedback/Alert/alert';
 import baseURL from '../../../baseURL';
+import Logo from '../../../components/Logo/logo';
 
 
 const FindRooms = (props) => {
@@ -53,7 +54,7 @@ const FindRooms = (props) => {
         }
     },[rooms,endpoint,onUpdateRoom,user])
 
-    const loading = props.loading ? <Loader /> : null;
+    const loading = props.loading ? <Logo /> : <Logo />;
     const error = props.error ? 
                   <Alert type='error' >
                       {props.error}
@@ -90,6 +91,7 @@ const FindRooms = (props) => {
         <Card style={{
             justifyContent : 'space-between'
         }}>
+            <Logo />
             <h3>Rooms</h3>
             <Rooms 
             rooms={props.rooms} 
