@@ -14,7 +14,7 @@ const reducer = (state=initialState , action) => {
             return {...initialState , loading : true};
 
         case actionTypes.AUTH_USER_SUCCESS :
-            return { loading : false , user : action.userId , success : action.success }
+            return { loading : false , user : action.userId , success : action.success , userObject : action.userObject }
 
         case actionTypes.AUTH_USER_FAILED :
             return {loading :  false , error : action.error }

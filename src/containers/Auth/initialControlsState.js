@@ -4,7 +4,7 @@ const initialState = {
         type : 'text',
         error : 'Username cannot be empty',
         success : null ,
-        placeholder : 'Username'
+        placeholder : 'Username or Email'
     },
     password : {
         value : '',

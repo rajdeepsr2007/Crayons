@@ -17,7 +17,7 @@ const Logo = () => {
     for( let i = 0 ; i < title.length ; i++ ){
         logo.push(
             <div 
-            key={`logo-letters-${colors[i]}`}
+            key={`logo-letters-${colors[i]}-${Math.random()*100000}`}
             style={{ color : colors[i] }} 
             className={classes.roll}
             >

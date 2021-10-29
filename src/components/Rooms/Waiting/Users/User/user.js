@@ -1,21 +1,11 @@
 import React from 'react';
 import Avatar from '../../../../Avatar/avatar';
-import crownIcon from '../../../../../assets/crown.png';
 import classes from './user.module.css';
 import Button from '../../../../Inputs/Button/button';
 
 const User = (props) => {
     const {user , admin  , iadmin  , onMakeHost , onRemoveUser } = props;
     let crown = null;
-
-    if( admin === user._id ){
-        crown = (
-            <div className={classes.crown} >
-                <img src={crownIcon}/>
-            </div>
-        )
-    }
-
 
     let userOptions = null;
     if(iadmin && user._id != admin ){
@@ -43,11 +33,10 @@ const User = (props) => {
 
     const userCard = (
         <div className={classes.user}>
-            <Avatar user={user} />
-            <span className={classes.label}>
+            <Avatar user={user} admin={admin===user._id}/>
+            <span className={[classes.label,classes.username].join(' ')}>
                 { user.username }
             </span>
-            {crown}
             {userOptions}
         </div>
     )

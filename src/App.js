@@ -61,7 +61,7 @@ function App(props) {
 
     return (
       <BrowserRouter>
-          <Layout userSocket={socket} >
+          <Layout userSocket={socket} loggedin={user} >
             {routes}
           </Layout>
       </BrowserRouter>

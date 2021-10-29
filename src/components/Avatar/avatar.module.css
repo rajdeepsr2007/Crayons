@@ -11,20 +11,94 @@
     position: relative;
 }
 
+@keyframes bounce-roll{
+    from{
+        transform: translateY(0);
+    }
+    10%{
+        transform: translateY(-10px);
+    }
+    50%{
+        transform: translateY(-15px) rotateZ(360deg) ;
+    }
+    100%{
+        transform : translateY(0);
+    }
+}
+
+@keyframes fall{
+    from{
+        transform: translateY(0px);
+    }
+    10%{
+        transform: translateY(-5px);
+    }
+    20%{
+        transform: translateY(0px);
+    }
+    30%{
+        transform: translateY(-4px);
+    }
+    40%{
+        transform: translateY(0px);
+    }
+    50%{
+        transform: translateY(-3px);
+    }
+    60%{
+        transform: translateY(0px);
+    }
+    70%{
+        transform: translateY(-2px);
+    }
+    80%{
+        transform: translateY(0px);
+    }
+    90%{
+        transform: translateY(-1px);
+    }
+    100%{
+        transform: translateY(0px);
+    }
+}
+
 .avatar .face{
+    position: relative;
     width : 2rem;
     height: 2rem;
     border-radius: 50%;
-    border: 1px solid rgb(106, 199, 106);
+    animation:bounce-roll 5s infinite ease-in-out;
 }
 .avatar .body{
     width : 3rem;
     height: 2rem;
-    border: 1px solid rgb(106, 199, 106);
     border-radius: 15px 15px 0 0;
+    animation: fall 3s infinite ease-in-out;
 }
 .avatar .icons{
     position: absolute;
-    top : -1rem;
     transform: scale(0.5);
+}
+
+.avatar .icons.eyes{
+    left : -1.7rem;
+    top : -1rem;
+}
+
+.avatar .icons.mouth{
+    top : -1rem;
+    left : -1.7rem;
+}
+
+.avatar .crown{
+    position: absolute;
+    height : 2rem;
+    width : 2rem;
+    position : absolute;
+    top : -1.2rem ;
+    left : -1rem;
+}
+.avatar .crown img{
+    height: inherit;
+    width: inherit;
 }

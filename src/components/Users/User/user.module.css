@@ -17,6 +17,9 @@
 .user .username{
     color: rgb(56, 194, 56);
     font-weight: bold;
+    display: inline-block;
+    overflow: hidden;
+    width: 5rem;
 }
 .user .last_seen{
     color: rgb(136, 129, 129);

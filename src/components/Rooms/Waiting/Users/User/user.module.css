@@ -6,17 +6,7 @@
     position : relative;
     box-sizing: border-box;
 }
-.user .crown{
-    height : 2rem;
-    width : 2rem;
-    position : absolute;
-    top : -1rem ;
-    left : -0.2rem
-}
-.user .crown img{
-    height: inherit;
-    width: inherit;
-}
+
 .user .label{
     color : green
 }
@@ -30,4 +20,9 @@
 .user:hover{
     transform: scale(1.1);
     cursor: pointer;
+}
+.user .username{
+    display: inline-block;
+    overflow: hidden;
+    width: 4rem;
 }
