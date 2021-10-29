@@ -61,7 +61,11 @@ function App(props) {
 
     return (
       <BrowserRouter>
-          <Layout userSocket={socket} loggedin={user} >
+          <Layout 
+          userSocket={socket} 
+          loggedin={user} 
+          onLogout={() => props.onLogout()}
+          >
             {routes}
           </Layout>
       </BrowserRouter>
@@ -76,7 +80,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return{
-      onAutoLogin : () => dispatch(actions.autoLogin())
+      onAutoLogin : () => dispatch(actions.autoLogin()),
+      onLogout : () => dispatch(actions.logout())
     }
 }
 

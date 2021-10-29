@@ -7,7 +7,7 @@ import Button from '../../components/Inputs/Button/button';
 
 const Layout = (props) => {
 
-    const {loggedin} = props;
+    const {loggedin , onLogout} = props;
 
     const layoutStyle = {
         background : `url(${background})`,
@@ -26,7 +26,10 @@ const Layout = (props) => {
         };
 
         logoutButton = (
-            <Button style={logoutButtonStyle} >
+            <Button 
+            style={logoutButtonStyle} 
+            onClick={onLogout}
+            >
                 <ExitToApp />
             </Button>
         )

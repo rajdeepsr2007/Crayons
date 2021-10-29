@@ -75,3 +75,18 @@ const setUserToLocalStorage = (user , token) => {
     localStorage.setItem('username' , user.username);
     localStorage.setItem('crayons-avatar' , user.avatar);
 }
+
+const logoutSuccess = () => {
+    return{
+        type : actionTypes.LOGOUT_SUCCESS
+    }
+}
+
+export const logout = () => {
+    return dispatch => {
+        localStorage.clear('crayons-token');
+        localStorage.clear('username');
+        localStorage.clear('crayons-avatar');
+        dispatch(logoutSuccess());
+    }
+}
