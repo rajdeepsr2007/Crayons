@@ -88,7 +88,7 @@ const Auth = (props) => {
     
 
     const authCard = (
-       <Card style={{ width : '20rem' }} >
+       <Card style={{ width : '20rem' , transform : 'scale(0.9)' }} >
            <Logo />
            {Inputs}
            {alert}

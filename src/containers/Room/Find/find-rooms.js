@@ -89,7 +89,8 @@ const FindRooms = (props) => {
 
     const roomsCard = (
         <Card style={{
-            justifyContent : 'space-between'
+            justifyContent : 'space-between',
+            transform : 'scale(0.9)'
         }}>
             <Logo />
             <h3>Rooms</h3>

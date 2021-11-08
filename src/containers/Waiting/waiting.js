@@ -187,7 +187,7 @@ const Waiting = (props) => {
     }
 
     const roomCard = (
-        <Card  style={{width : 'auto'}}  >
+        <Card  style={{width : 'auto' , transform : 'scale(0.9)'}}  >
             <Logo />
             {roomIdAlert}
             {content}

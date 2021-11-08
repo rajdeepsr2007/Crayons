@@ -102,7 +102,7 @@ const Menu = (props) => {
         </Fragment>
     )
     const menu = (
-        <Card style={{ width : '20rem' }} >
+        <Card style={{ width : '20rem' , transform : 'scale(0.9)' }} >
             <Logo />
             {playButton}
             {createRoomButton}

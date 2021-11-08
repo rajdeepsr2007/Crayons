@@ -12,7 +12,7 @@ const initialState = {
     } ,
     users : {
         search : [] ,
-        friends : null
+        friends : []
     }
 }
 
@@ -22,7 +22,7 @@ const copyState = (state) => {
         error : {...state.error} , 
         users : {
             search : [] ,
-            friends : null
+            friends : []
         }
     };
     for( const user of state.users.search )

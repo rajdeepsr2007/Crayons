@@ -112,7 +112,8 @@ const CreateRoom = (props) => {
         <Card style={{
             width : '25%',
             height : 'auto',
-            minWidth : '20rem'
+            minWidth : '20rem',
+            transform : 'scale(0.9)'
         }} >
             <Logo />
             {alert}

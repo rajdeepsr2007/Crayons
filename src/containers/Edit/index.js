@@ -59,7 +59,7 @@ const Edit = (props) => {
         </Button>
     )
 
-    const cardStyle={margin : '0 2rem 2rem 2rem' , paddingTop : '0' }
+    const cardStyle={margin : '0 2rem 2rem 2rem' , paddingTop : '0' , transform : 'scale(0.9)' }
     return (
         <Fragment>
             <Card
