@@ -6,9 +6,11 @@ import classes from './players.module.css';
 
 const Players = (props) => {
 
-    const {users , turn , scores , iadmin , onRemoveUser } = props;
+    let {users , turn , scores , iadmin , onRemoveUser } = props;
 
-    const playerObjects = users.map(user => {
+    users = users.sort(( a , b ) => scores[a._id].overall >= scores[b._id].overall );
+
+    const playerObjects = users.map((user , index) => {
         return (
             <Player
             key={user._id}
@@ -18,6 +20,7 @@ const Players = (props) => {
             qscore={scores[user._id].question}
             removeUser={onRemoveUser}
             iadmin={iadmin}
+            index={index+1}
             />
         )
     })

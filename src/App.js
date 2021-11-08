@@ -11,6 +11,7 @@ import * as actions from './store/actions/';
 import socketIOClient from "socket.io-client";
 import Loader from "./components/UI/Loader/loader-big";
 import baseURL from "./baseURL";
+import Edit from "./containers/Edit";
 
 function App(props) {
 
@@ -47,6 +48,7 @@ function App(props) {
           <Route path='/waiting/:roomId' render={() => <Waiting usersSocket={socket}/> } />
           <Route path='/menu' component={Menu} />
           <Route path='/create-room' component={CreateRoom} />
+          <Route path='/edit' component={Edit} />
           <Redirect to='/menu' />
         </Switch>
       ) : <Loader />

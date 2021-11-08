@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Card from '../../../../components/UI/Card/card';
 import Title from '../../../../components/UI/Title/title';
-import CustomInputs from '../../../../components/Inputs/custom-inputs';
+import CustomInputs from '../../../../components/Inputs/Custom Inputs/custom-inputs';
 import {connect} from 'react-redux';
 import * as actions from '../../../../store/actions/index';
 import Loader from '../../../../components/UI/Loader/loader-big';

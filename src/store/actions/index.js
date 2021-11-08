@@ -1,7 +1,7 @@
 export{
     authUser,
     autoLogin,
-    logout
+    logout ,
 } from './auth/';
 
 export{
@@ -28,3 +28,7 @@ export{
     addUser,
     addMessage
 } from './room/message/'
+
+export{
+    changeAvatar
+} from './profile'

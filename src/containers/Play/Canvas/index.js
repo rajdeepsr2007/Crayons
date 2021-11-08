@@ -18,7 +18,7 @@ const CanvasDraw = (props) => {
                     'canvas-update',
                     { roomId : room.roomId , canvasPath }
                 )
-            } , 100);
+            },100);
             setSockettimeout(updatedTimeout);
         }
     }

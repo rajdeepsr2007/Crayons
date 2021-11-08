@@ -1,6 +1,6 @@
 import React , {Fragment, useEffect, useReducer, useState} from 'react';
 import initialState from './initialControlsState';
-import CustomInputs from '../../components/Inputs/custom-inputs';
+import CustomInputs from '../../components/Inputs/Custom Inputs/custom-inputs';
 import Card from '../../components/UI/Card/card';
 import Logo from '../../components/Logo/logo';
 import Button from '../../components/Inputs/Button/button';

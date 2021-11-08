@@ -7,6 +7,29 @@
 .canvas .controls{
     margin : 2rem;
 }
+
+@keyframes rgb{
+    from{
+        box-shadow:0px 0px 10px 2px rgb(201, 116, 90);
+    }
+    20%{
+        box-shadow:0px 0px 10px 2px rgb(195, 207, 85);
+    }
+    40%{
+        box-shadow:0px 0px 10px 2px rgb(78, 187, 110);
+    }
+    60%{
+        box-shadow:0px 0px 10px 2px rgb(87, 196, 190);
+    }
+    80%{
+        box-shadow:0px 0px 10px 2px rgb(144, 84, 179);
+    }
+    100%{
+        box-shadow:0px 0px 10px 2px rgb(180, 95, 121);
+    }
+}
+
 .canvas .draw{
-    background : 'white'
+    background : white;
+    animation : rgb 10s infinite ease-in-out;
 }

@@ -3,7 +3,7 @@ import Card from '../../../components/UI/Card/card';
 import Logo from '../../../components/Logo/logo';
 import initialState from './initialState';
 import controlsReducer from './controlsReducer';
-import CustomInputs from '../../../components/Inputs/custom-inputs';
+import CustomInputs from '../../../components/Inputs/Custom Inputs/custom-inputs';
 import Alert from '../../../components/Feedback/Alert/alert';
 import Button from '../../../components/Inputs/Button/button';
 import {connect} from 'react-redux';

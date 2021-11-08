@@ -1,0 +1,7 @@
+.username{
+    color : green;
+    padding: 0.5rem 2rem;
+    background: rgb(217, 240, 171);
+    margin : 1rem 0;
+    border-radius: 20px;
+}

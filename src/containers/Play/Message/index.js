@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Fragment } from 'react';
 import Button from '../../../components/Inputs/Button/button';
-import CustomInputs from '../../../components/Inputs/custom-inputs';
+import CustomInputs from '../../../components/Inputs/Custom Inputs/custom-inputs';
 import Card from '../../../components/UI/Card/card';
 import Title from '../../../components/UI/Title/title';
 import socketIOClient from 'socket.io-client';
@@ -77,7 +77,7 @@ const Message = (props) => {
 
     const messageInput = (
         <div style={{ display : 'flex' , justifyContent : 'space-between' , alignItems :' center' }} >
-             <CustomInputs
+            <CustomInputs
             controls={controls}
             onChange={onChange}
             disabled={room.turn===user}

@@ -102,3 +102,7 @@
     height: inherit;
     width: inherit;
 }
+
+.color_picker{
+    margin: 1.5rem 0;
+}

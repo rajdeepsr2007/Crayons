@@ -7,12 +7,13 @@ const authUserStart = () => {
     }
 }
 
-const authUserSuccess = (userId , success , userObject) => {
+const authUserSuccess = (userId , success , userObject , token) => {
     return{
         type : actionTypes.AUTH_USER_SUCCESS,
         userId,
         userObject,
-        success
+        success,
+        token
     }
 }
 
@@ -31,7 +32,7 @@ export const authUser = (username , password) => {
             if( response ){
                 if( response.data.success ){
                     setUserToLocalStorage(  response.data.userObject , response.data.token  )
-                    dispatch(authUserSuccess(response.data.userId , response.data.message , response.data.userObject))
+                    dispatch(authUserSuccess(response.data.userId , response.data.message , response.data.userObject , response.data.token))
                 }
                 else{
                     dispatch(authUserFailed(response.data.message))
@@ -59,7 +60,7 @@ export const autoLogin = () => {
                 if( response ){
                     if( response.data.success ){
                         setUserToLocalStorage(  response.data.userObject , response.data.token  )
-                        dispatch(authUserSuccess(response.data.userId , response.data.message , response.data.userObject ))
+                        dispatch(authUserSuccess(response.data.userId , response.data.message , response.data.userObject , response.data.token ))
                     }
                 }
             })
@@ -90,3 +91,4 @@ export const logout = () => {
         dispatch(logoutSuccess());
     }
 }
+

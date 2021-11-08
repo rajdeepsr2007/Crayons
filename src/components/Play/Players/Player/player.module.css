@@ -1,14 +1,17 @@
 .player{
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-evenly;
     align-items: center;
     width: 100%;
     margin : 1rem 0 0 0;
-    background: rgb(204, 240, 204);
+    background: linear-gradient( rgb(155, 218, 155) , rgb(161, 194, 223));
     position:relative;
+    padding: 0.5rem;
+    box-shadow: -5px 5px 5px 1px rgb(211, 209, 209);
+    border-radius: 10px;
 }
 .player .username{
-    color : rgb(103, 156, 216);
+    color : white;
     font-weight: bolder;
     overflow: hidden;
 }
@@ -42,4 +45,8 @@
 }
 .player:hover .remove{
     display: block;
+}
+
+.player strong{
+    color: grey;
 }

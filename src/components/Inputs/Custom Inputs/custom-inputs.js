@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import Alert from '../Feedback/Alert/alert';
+import Alert from '../../Feedback/Alert/alert';
 import classes from './custom-input.module.css';
 
 const CustomInputs = (props) => {

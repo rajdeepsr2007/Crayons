@@ -4,13 +4,34 @@ import Card from '../../components/UI/Card/card';
 import Button from '../../components/Inputs/Button/button';
 import controlsReducer from './controlsReducer';
 import initialState from './initialState';
-import CustomInputs from '../../components/Inputs/custom-inputs';
+import CustomInputs from '../../components/Inputs/Custom Inputs/custom-inputs';
+import Avatar from '../../components/Avatar/avatar';
+import {connect} from 'react-redux';
+
 
 const Menu = (props) => {
 
     const [controls , dispatchContols] = useReducer(
         controlsReducer ,
         initialState
+    )
+
+    const {userObject} = props;
+    const editButtonStyle={
+        width : 'auto',
+        borderRadius : '50%',
+        padding : '2rem 3rem'
+    }
+
+    const editAvatarButton = (
+       <Button
+       style={editButtonStyle}
+       onClick={() => navigate('/edit')}
+       >
+           <Avatar
+           user={userObject}
+           />
+       </Button>
     )
 
     const onChange = (control , event) => {
@@ -86,6 +107,7 @@ const Menu = (props) => {
             {playButton}
             {createRoomButton}
             {joinRoomButton}
+            {editAvatarButton}
         </Card>
     )
     return(
@@ -93,4 +115,10 @@ const Menu = (props) => {
     )
 }
 
-export default Menu;
+const mapStateToProps = state => {
+    return{
+        userObject : state.auth.userObject
+    }
+}
+
+export default connect(mapStateToProps)(Menu);

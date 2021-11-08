@@ -1,5 +1,5 @@
 import React , {Fragment} from 'react';
-import {CirclePicker} from 'react-color';
+import { CirclePicker } from 'react-color';
 import Button from '../../../Inputs/Button/button'
 import classes from './controls.module.css';
 
@@ -31,7 +31,7 @@ const Controls = (props) => {
     }
 
     const colorPicker = (
-        <CirclePicker 
+        <CirclePicker
         onChange={onColorChange}
         />
     )
