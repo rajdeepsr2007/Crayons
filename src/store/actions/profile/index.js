@@ -23,7 +23,6 @@ const editAvatarFailed = () => {
 
 export const changeAvatar = ( userId , token , avatar ) => {
     return dispatch => {
-        console.log(userId , token , avatar);
         dispatch(editAvatarStart());
         axiosInstance.post('/api/profile/avatar' , { userId , avatar } ,{
             headers : {
@@ -33,6 +32,61 @@ export const changeAvatar = ( userId , token , avatar ) => {
         .then( response => {
             if( response && response.data.success )
                 dispatch(editAvatarSuccess(avatar))
+            else
+                dispatch(editAvatarFailed())
+        })
+        .catch(error => {
+            dispatch(editAvatarFailed())
+        })
+    }
+}
+
+const addAvatarSuccess = (picture) => {
+    return{
+        type : actionTypes.ADD_AVATAR_SUCCESS,
+        picture
+    }
+}
+
+export const uploadAvatar = ( image , token ) => {
+    return dispatch => {
+        dispatch(editAvatarStart());
+        axiosInstance.post('/api/profile/upload' , image , {
+            headers : {
+                "Authorization" : "Bearer " + token,
+                'Content-Type' : 'multipart/form-data'
+            }
+        })
+        .then( response => {
+            if( response && response.data.success ){
+                dispatch(addAvatarSuccess(response.data.picture))
+            }else{
+                dispatch(editAvatarFailed())
+            }
+        })
+        .catch(error => {
+            dispatch(editAvatarFailed())
+        })
+    }
+}
+
+const deleteAvatarSuccess = () => {
+    return{
+        type : actionTypes.DELETE_AVATAR_SUCCESS
+    }
+}
+
+export const deleteAvatar = (token) => {
+    return dispatch => {
+        dispatch(editAvatarStart());
+        axiosInstance.get('/api/profile/delete',{
+            headers : {
+                "Authorization" : "Bearer " + token
+            }
+        })
+        .then(response => {
+            if( response && response.data.success )
+                dispatch(deleteAvatarSuccess())
             else
                 dispatch(editAvatarFailed())
         })

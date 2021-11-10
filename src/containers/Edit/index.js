@@ -6,10 +6,13 @@ import classes from './edit.module.css';
 import { useState  ,  Fragment } from "react";
 import Logo from '../../components/Logo/logo';
 import * as actions from '../../store/actions/index';
+import ImageInput from "../../components/Inputs/Image";
+import baseURL from "../../baseURL";
+import Loader from '../../components/UI/Loader/loader-big';
 
 const Edit = (props) => {
 
-    const {userObject , onSaveAvatar , token , userId} = props;
+    const {userObject , onSaveAvatar , token , userId , onUploadAvatar , loading } = props;
     const avatarStyle={ 
         transform : 'scale(1.5)' ,
         margin : '3rem 0',
@@ -17,19 +20,35 @@ const Edit = (props) => {
     }
 
     const [editableAvatar , setEditableAvatar] = useState(userObject.avatar);
+    const [image , setImage] = useState(undefined);
+    const [editAvatar , setEditAvatar ] = useState(true);
 
     const onChangeAvatar = (avatar) => {
         setEditableAvatar(avatar);
     }
 
+    const onChangeUploadAvatar = (image) => {
+        setImage(image);
+    }
+
     const onSaveChanges = () => {
-        var i = 0 ;
-        for( i = 0 ; i < editableAvatar.length ; i++ )
-            if( userObject.avatar[i] !== editableAvatar[i] )
-                break;
-        if( i === editableAvatar.length )
-            return;
-        onSaveAvatar( userId  , token , editableAvatar );
+
+        if( editAvatar ){
+            var i = 0 ;
+            for( i = 0 ; i < editableAvatar.length ; i++ )
+                if( userObject.avatar[i] !== editableAvatar[i] )
+                    break;
+            if( i === editableAvatar.length )
+                return;
+            onSaveAvatar( userId  , token , editableAvatar );
+        }else{
+            if( image ){
+                const formData = new FormData();
+                formData.append('avatar' , image );
+                onUploadAvatar( formData , token );
+            }
+        }
+        
     }
 
     const backButton = (
@@ -42,14 +61,6 @@ const Edit = (props) => {
         </Button>
     )
 
-    const uploadProfilePicture = (
-        <Button
-        style={{ margin : '1rem 0 0 0' }}
-        >
-            Upload 
-        </Button>
-    )
-
     const saveChangesButton = (
         <Button
         onClick={() => onSaveChanges()}
@@ -59,26 +70,68 @@ const Edit = (props) => {
         </Button>
     )
 
-    const cardStyle={margin : '0 2rem 2rem 2rem' , paddingTop : '0' , transform : 'scale(0.9)' }
+    let avatar = null ;
+    if( loading ){
+        avatar = <Loader />
+    }else if( !loading && editAvatar ){
+        avatar = (
+            <div style={{ marginTop : '1rem' }} >
+                <Avatar 
+                edit
+                onChange={onChangeAvatar}
+                user={userObject}
+                style={avatarStyle}
+                />
+            </div> 
+        )    
+    }else{
+        const deleteAvatar = () => {
+            if( userObject.picture )
+                props.onDeleteAvatar(token);
+        }
+        avatar = (
+            <ImageInput 
+            style={{ marginTop : '1rem' }} 
+            onChange={onChangeUploadAvatar} 
+            image={baseURL + ':8000' + userObject.picture}
+            deleteImage={deleteAvatar}
+            />
+        )
+    }
+
+    const switchMode = () => {
+        setEditAvatar(!editAvatar);
+    }
+
+    const switchButton = (
+        <Button 
+        onClick={() => switchMode()} 
+        style={{ margin : '1rem 0 0 0' }}
+        >
+            { editAvatar ? 'Upload Avatar' : 'Edit Avatar' }
+        </Button>
+    )
+
+    const cardStyle={
+        margin : '0 2rem 2rem 2rem' , 
+        paddingTop : '0' , 
+        transform : 'scale(0.9)',
+        width :  '25rem'
+    }
+
+
     return (
         <Fragment>
             <Card
             style={cardStyle}
             >
                 <Logo />
-                <div style={{ marginTop : '5rem' }} >
-                    <Avatar 
-                    edit
-                    onChange={onChangeAvatar}
-                    user={userObject}
-                    style={avatarStyle}
-                    />
-                </div>
                 <span 
                 className={classes.username} >
                     {userObject.username}
                 </span>
-                {uploadProfilePicture}
+                { avatar }
+                {switchButton}
                 {saveChangesButton}
                 {backButton}
             </Card>
@@ -92,13 +145,16 @@ const mapStateToProps = state => {
     return {
         token : state.auth.token ,
         userId : state.auth.user ,
-        userObject : state.auth.userObject
+        userObject : state.auth.userObject ,
+        loading : state.auth.loading
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return{
-        onSaveAvatar : (userId , token , avatar) => dispatch(actions.changeAvatar(userId , token , avatar))
+        onSaveAvatar : (userId , token , avatar) => dispatch(actions.changeAvatar(userId , token , avatar)),
+        onUploadAvatar : (image , token) => dispatch(actions.uploadAvatar(image , token)),
+        onDeleteAvatar : (token) => dispatch(actions.deleteAvatar(token))
     }
 }
 

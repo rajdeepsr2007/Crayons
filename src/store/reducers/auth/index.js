@@ -31,6 +31,12 @@ const reducer = (state=initialState , action) => {
         case actionTypes.EDIT_AVATAR_SUCCESS :
             return {...state , loading : false , userObject : {...state.userObject , avatar : action.avatar} }
 
+        case actionTypes.ADD_AVATAR_SUCCESS :
+            return {...state , loading : false , userObject : {...state.userObject , picture : action.picture}}
+
+        case actionTypes.DELETE_AVATAR_SUCCESS :
+            return {...state , loading : false , userObject : {...state.userObject , picture : null}}
+
         default : 
             return state;
     }

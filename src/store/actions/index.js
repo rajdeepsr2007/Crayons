@@ -30,5 +30,7 @@ export{
 } from './room/message/'
 
 export{
-    changeAvatar
+    changeAvatar ,
+    uploadAvatar ,
+    deleteAvatar
 } from './profile'

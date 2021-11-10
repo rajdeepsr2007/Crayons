@@ -6,6 +6,7 @@ import crownIcon from '../../assets/crown.png';
 import classes from './avatar.module.css';
 import Button from '../Inputs/Button/button';
 import { HuePicker} from 'react-color';
+import baseURL from '../../baseURL';
 
 const Avatar = (props) => {
 
@@ -30,6 +31,21 @@ const Avatar = (props) => {
                 <img src={crownIcon}/>
             </div>
         )
+    }
+
+    if( !edit && user.picture ){
+        const avatar = (
+            <div 
+            style={props.style}
+            className={classes.avatar_picture} >
+                <img
+                src={baseURL + ':8000' + user.picture}
+                />
+                {crown}
+            </div>
+        )
+
+        return avatar;
     }
 
     const animationStyle = { 

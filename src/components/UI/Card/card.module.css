@@ -1,3 +1,12 @@
+@keyframes fadeIn {
+    from{
+        opacity: 0%;
+    }
+    to{
+        opacity: 100%;
+    }
+}
+
 .card{
     width: auto;
     height: auto;
@@ -14,6 +23,7 @@
     position: relative;
     padding-top: 5rem;
     overflow: hidden;
+    animation: fadeIn 0.5s ease-in-out 1 ;
 }
 .card h3{
     text-align: center;

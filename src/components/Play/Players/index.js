@@ -8,16 +8,20 @@ const Players = (props) => {
 
     let {users , turn , scores , iadmin , onRemoveUser } = props;
 
-    users = users.sort(( a , b ) => scores[a._id].overall >= scores[b._id].overall );
+    users = users.sort(( a , b ) => {
+        let scoreA = a._id ? scores[a._id].overall : scores[a].overall;
+        let scoreB = b._id ? scores[b._id].overall : scores[b].overall;
+        return scoreB - scoreA; 
+    });
 
     const playerObjects = users.map((user , index) => {
         return (
             <Player
-            key={user._id}
+            key={user._id ? user._id : user }
             user={user}
-            turn={turn===user._id}
-            score={scores[user._id].overall}
-            qscore={scores[user._id].question}
+            turn={turn===(user._id || user)}
+            score={user._id ? scores[user._id].overall : scores[user].overall}
+            qscore={user._id ? scores[user._id].question : scores[user].question}
             removeUser={onRemoveUser}
             iadmin={iadmin}
             index={index+1}
